@@ -100,5 +100,17 @@
   <ItemGroup>
     <Resource Include="Main Background With Skeleton.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Backgrounds\Sidebar Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Backgrounds\Sidebar Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sidebar Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sidebar Large.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

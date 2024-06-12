@@ -14,10 +14,9 @@
             <ImageBrush ImageSource="/Main Background With Skeleton.png"/>
         </Grid.Background>
 
+        <Image Source="/Sidebar Small.png" Margin="0,0,1798,0"/>
+        <Image Source="/Sidebar Large.png" Margin="0,0,1419,0"/>
 
 
-        <!--#region Borderlines--><!--
-        <Rectangle x:Name="rBorderReference" Margin="0,1017,0,24" Fill="Black" Stroke="Black"/>
-        --><!--endregion-->
     </Grid>
 </Window>
