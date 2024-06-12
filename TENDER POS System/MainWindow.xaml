@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TENDER_POS_System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowState="Maximized"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="1080" Width="1920">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Main Background With Skeleton.png"/>
+        </Grid.Background>
+
+
+
+        <!--#region Borderlines--><!--
+        <Rectangle x:Name="rBorderReference" Margin="0,1017,0,24" Fill="Black" Stroke="Black"/>
+        --><!--endregion-->
     </Grid>
 </Window>
