@@ -37,8 +37,7 @@
         <Label x:Name="lbStatusbar" Content="Welcome to TENDER!" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="48" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="139,22,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="76" Width="497"/>
 
 
-        <Grid x:Name="grdMenuItems" Margin="122,118,637,7">
-
+        <Grid x:Name="grdMenuItems" Margin="122,118,637,7" Visibility="Visible">
             <Image x:Name="imgItem1" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="49,14,0,0" VerticalAlignment="Top"/>
             <Image x:Name="imgItem2" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="324,14,0,0" VerticalAlignment="Top"/>
             <Image x:Name="imgItem3" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="598,14,0,0" VerticalAlignment="Top"/>
@@ -68,7 +67,14 @@
             <TextBox x:Name="lbItem10" TextWrapping="Wrap" Text="Tonkotsu Miso Overload" FontFamily="Segoe UI SemiBold" FontSize="23" HorizontalAlignment="Left" Margin="324,859,0,0" VerticalAlignment="Top" Height="64" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
             <TextBox x:Name="lbItem11" TextWrapping="Wrap" Text="Tonkotsu Miso Overload" FontFamily="Segoe UI SemiBold" FontSize="23" HorizontalAlignment="Left" Margin="598,859,0,0" VerticalAlignment="Top" Height="64" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
             <TextBox x:Name="lbItem12" TextWrapping="Wrap" Text="Tonkotsu Miso Overload" FontFamily="Segoe UI SemiBold" FontSize="23" HorizontalAlignment="Left" Margin="873,859,0,0" VerticalAlignment="Top" Height="64" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
+        </Grid>
 
+
+        <Label x:Name="lbOrder" Content="Order List" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="1314,18,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="88" Width="579"/>
+        <Button x:Name="btnPlaceOrder" Content="Place Order" FontFamily="Segoe UI SemiBold" FontSize="42" Margin="1400,941,0,0" Background="#FFED4439" Foreground="White" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Width="408" Height="94" VerticalAlignment="Top"/>
+
+        <Grid x:Name="grdOrderList" Margin="1340,129,52,270" Visibility="Visible">
+            
         </Grid>
 
     </Grid>
