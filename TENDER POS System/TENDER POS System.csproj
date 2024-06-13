@@ -140,5 +140,11 @@
   <ItemGroup>
     <Resource Include="TENDER Logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Menu Items\defaultimg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="defaultimg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

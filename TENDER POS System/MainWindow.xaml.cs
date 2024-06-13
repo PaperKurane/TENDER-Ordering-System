@@ -24,5 +24,10 @@ namespace TENDER_POS_System
         {
             InitializeComponent();
         }
+
+        private void lbItem1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
