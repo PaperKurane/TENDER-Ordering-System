@@ -14,9 +14,19 @@
             <ImageBrush ImageSource="/Main Background With Skeleton.png"/>
         </Grid.Background>
 
-        <Image Source="/Sidebar Small.png" Margin="0,0,1798,0"/>
-        <Image Source="/Sidebar Large.png" Margin="0,0,1419,0"/>
+        <Image x:Name="imgSidebarS" Visibility="Visible" Source="/Sidebar Small.png" Margin="0,0,1798,0" MouseDown="imgSidebarS_MouseDown"/>
+        <Image x:Name="imgSidebarL" Visibility="Collapsed" Source="/Sidebar Large.png" Margin="0,0,1419,0" MouseLeave="imgSidebarL_MouseLeave"/>
 
+
+
+        <Image x:Name="btnRice" Source="/Rice.png" Margin="21,195,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top"/>
+        <Image x:Name="btnNoodles" Source="/Ramen.png" Margin="21,325,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top"/>
+        <Image x:Name="btnBeverages" Source="/Beverages.png" Margin="27,456,0,0" HorizontalAlignment="Left" Width="64" Height="90" VerticalAlignment="Top"/>
+        <Image x:Name="btnSides" Source="/Gyoza.png" Margin="16,607,0,0" HorizontalAlignment="Left" Width="90" Height="68" VerticalAlignment="Top"/>
+
+        <Image x:Name="btnExit" Source="/Exit.png" Margin="35,975,0,0" HorizontalAlignment="Left" Width="60" Height="60" VerticalAlignment="Top"/>
+
+        <Image x:Name="imgLogo" Source="/TENDER Logo.png" HorizontalAlignment="Left" Width="125" Height="125" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

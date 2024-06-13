@@ -112,5 +112,33 @@
   <ItemGroup>
     <Resource Include="Sidebar Large.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Beverages.png" />
+    <Resource Include="Resources\Icons\Exit.png" />
+    <Resource Include="Resources\Icons\Gyoza.png" />
+    <Resource Include="Resources\Icons\Ramen.png" />
+    <Resource Include="Resources\Icons\Rice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Rice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ramen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Beverages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gyoza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\TENDER Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TENDER Logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

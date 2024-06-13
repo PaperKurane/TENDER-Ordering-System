@@ -24,5 +24,15 @@ namespace TENDER_POS_System
         {
             InitializeComponent();
         }
+
+        private void imgSidebarS_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            imgSidebarL.Visibility = Visibility.Visible;
+        }
+
+        private void imgSidebarL_MouseLeave(object sender, MouseEventArgs e)
+        {
+            imgSidebarL.Visibility = Visibility.Collapsed;
+        }
     }
 }
