@@ -29,5 +29,13 @@ namespace TENDER_POS_System
         {
 
         }
+
+        private void imgItem1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OrderWindow ow = new OrderWindow();
+            ow.Owner = this;
+            ow.ShowDialog();
+
+        }
     }
 }

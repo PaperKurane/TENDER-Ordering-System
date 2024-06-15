@@ -34,11 +34,11 @@
 
         <Image x:Name="imgLogo" Source="/TENDER Logo.png" Height="100" Width="100" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-        <Label x:Name="lbStatusbar" Content="Welcome to TENDER!" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="48" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="139,22,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="76" Width="497"/>
+        <Label x:Name="lbStatusbar" Content="Welcome to TENDER!" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="48" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="139,21,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="76" Width="497"/>
 
 
         <Grid x:Name="grdMenuItems" Margin="122,118,637,7" Visibility="Visible">
-            <Image x:Name="imgItem1" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="49,14,0,0" VerticalAlignment="Top"/>
+            <Image x:Name="imgItem1" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="49,14,0,0" VerticalAlignment="Top" MouseDown="imgItem1_MouseDown"/>
             <Image x:Name="imgItem2" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="324,14,0,0" VerticalAlignment="Top"/>
             <Image x:Name="imgItem3" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="598,14,0,0" VerticalAlignment="Top"/>
             <Image x:Name="imgItem4" Source="/defaultimg.png" Height="235" Width="235" HorizontalAlignment="Left" Margin="873,14,0,0" VerticalAlignment="Top"/>
