@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TenderConn">
+  <DataContextMoniker Name="/TenderConnDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6e249e3d-d30b-4aef-af47-351fe41fbab9" absoluteBounds="0.75, 1.25, 2, 1.1939925130208338">
+      <DataClassMoniker Name="/TenderConnDataContext/Item_Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bcaf9144-22d8-4fde-bbc3-59b8ebd585b7" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5780ea92-aedb-4876-9e79-9c3459f5d368" absoluteBounds="3.5, 0.875, 2, 1.7708968098958333">
+      <DataClassMoniker Name="/TenderConnDataContext/Menu_Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="023d7fbb-269c-4539-a819-0f39cc672f4d" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="066085e9-65ee-4270-be66-9fadc225f05c" absoluteBounds="3.5, 4.125, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/TenderConnDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e2af9b3-f06f-4572-a03b-d139c6a63a25" absoluteBounds="3.515, 4.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bb2f17c-0770-440e-9f92-c2326b5b8c60" absoluteBounds="6.25, 0.875, 2, 1.7708968098958333">
+      <DataClassMoniker Name="/TenderConnDataContext/Order_Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ed3ada7b-44fa-4e4c-9448-c4a5a8234c58" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (3.5 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TenderConnDataContext/Item_Category/Item_Category_Menu_Item" />
+      <nodes>
+        <classShapeMoniker Id="6e249e3d-d30b-4aef-af47-351fe41fbab9" />
+        <classShapeMoniker Id="5780ea92-aedb-4876-9e79-9c3459f5d368" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.76044840494792); (6.25 : 1.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TenderConnDataContext/Menu_Item/Menu_Item_Order_Item" />
+      <nodes>
+        <classShapeMoniker Id="5780ea92-aedb-4876-9e79-9c3459f5d368" />
+        <classShapeMoniker Id="0bb2f17c-0770-440e-9f92-c2326b5b8c60" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.81814697265625); (7.25 : 4.81814697265625); (7.25 : 2.64589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TenderConnDataContext/Order/Order_Order_Item" />
+      <nodes>
+        <classShapeMoniker Id="066085e9-65ee-4270-be66-9fadc225f05c" />
+        <classShapeMoniker Id="0bb2f17c-0770-440e-9f92-c2326b5b8c60" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
