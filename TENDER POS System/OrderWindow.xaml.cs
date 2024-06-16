@@ -11,7 +11,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using AForge.Video;
+using AForge.Video.DirectShow;
 
 namespace TENDER_POS_System
 {
@@ -37,7 +42,6 @@ namespace TENDER_POS_System
         }
         private void DisplayItemDetails()
         {
-            // Display the details of the selected item in the OrderWindow
             tbMealName.Text = _menuItem.Item_Name;
             tbMealPrice.Text = $"Price: {_menuItem.Item_Price.ToString("C", new CultureInfo("fil-PH"))}";
 
@@ -55,6 +59,13 @@ namespace TENDER_POS_System
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void imgLogo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            vcd = new VideoCaptureDevice(fic[cmbCamera.SelectedIndex].MonikerString);
+            vcd.NewFrame += Vcd_NewFrame;
+            vcd.Start();
         }
     }
 }

@@ -21,13 +21,13 @@ namespace TENDER_POS_System
     public partial class MainWindow : Window
     {
         TenderConnDataContext _dbConn = null;
+        bool EmployeeMode = false;
 
         public MainWindow()
         {
             InitializeComponent();
 
             _dbConn = new TenderConnDataContext(Properties.Settings.Default.TenderConnectionString);
-
             LoadMenuItems("1"); // 1 is defaulted to ricemeals
         }
 
@@ -83,7 +83,6 @@ namespace TENDER_POS_System
                     }
 
                     img.Tag = item;
-
                     img.Visibility = Visibility.Visible;
                 }
 
