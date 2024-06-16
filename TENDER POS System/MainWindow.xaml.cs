@@ -55,6 +55,15 @@ namespace TENDER_POS_System
 
         private void BindMenuItems(List<MenuItem> menuItems)
         {
+            for (int x = 0; x <= 12; x++)
+            {
+                Image img = (Image)FindName("imgItem" + x);
+                TextBox text = (TextBox)FindName("lbItem" + x);
+
+                if (img != null) img.Visibility = Visibility.Collapsed;
+                if (text != null) text.Visibility = Visibility.Collapsed;
+            }
+
             for (int x = 0; x < menuItems.Count && x < 12; x++)
             {
                 var item = menuItems[x];
@@ -72,23 +81,33 @@ namespace TENDER_POS_System
                     {
                         img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Menu Items/defaultimg.png"));
                     }
+
+                    img.Tag = item;
+
+                    img.Visibility = Visibility.Visible;
                 }
 
                 // Set item name
-                TextBox txt = (TextBox)FindName("lbItem" + (x + 1));
-                if (txt != null)
+                TextBox text = (TextBox)FindName("lbItem" + (x + 1));
+                if (text != null)
                 {
-                    txt.Text = item.Item_Name;
+                    text.Text = item.Item_Name;
+                    text.Visibility = Visibility.Visible;
                 }
             }
         }
 
-        private void imgItem1_MouseDown(object sender, MouseButtonEventArgs e)
+        private void imgItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OrderWindow ow = new OrderWindow();
-            ow.Owner = this;
-            ow.ShowDialog();
+            Image img = (Image)sender;
+            MenuItem item = img.Tag as MenuItem;
 
+            if (item != null)
+            {
+                OrderWindow ow = new OrderWindow(item);
+                ow.Owner = this;
+                ow.ShowDialog();
+            }
         }
     }
 }
