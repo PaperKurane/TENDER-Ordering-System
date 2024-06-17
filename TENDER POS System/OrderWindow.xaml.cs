@@ -67,81 +67,81 @@ namespace TENDER_POS_System
 
         private void imgLogo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            vcd = new VideoCaptureDevice(fic[cmbCamera.SelectedIndex].MonikerString);
-            vcd.NewFrame += Vcd_NewFrame;
-            vcd.Start();
+            //vcd = new VideoCaptureDevice(fic[cmbCamera.SelectedIndex].MonikerString);
+            //vcd.NewFrame += Vcd_NewFrame;
+            //vcd.Start();
         }
 
-        private void Vcd_NewFrame(object sender, NewFrameEventArgs eventArgs)
-        {
-            //pic.Source = eventArgs.Frame.Clone();
+        //private void Vcd_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        //{
+        //    //pic.Source = eventArgs.Frame.Clone();
 
-            // This line allows the event to modify the content of the image box
-            // without this block of code, the thread holding the Image box and the thread
-            // holding the image will not talk to each other
-            this.Dispatcher.Invoke(() =>
-            {
-                /*
-                 * This convoluted piece of code will convert the bitmap image of the video
-                 * source (Your selected webcam) into something the Imagebox can load.
-                 * I suggest not to change this section of the code.
-                 */
-                imgPicture.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                        ((Bitmap)eventArgs.Frame.Clone()).GetHbitmap(),
-                        IntPtr.Zero,
-                        System.Windows.Int32Rect.Empty,
-                        BitmapSizeOptions.FromWidthAndHeight((int)imgPicture.Width, (int)imgPicture.Height));
-            });
+        //    // This line allows the event to modify the content of the image box
+        //    // without this block of code, the thread holding the Image box and the thread
+        //    // holding the image will not talk to each other
+        //    this.Dispatcher.Invoke(() =>
+        //    {
+        //        /*
+        //         * This convoluted piece of code will convert the bitmap image of the video
+        //         * source (Your selected webcam) into something the Imagebox can load.
+        //         * I suggest not to change this section of the code.
+        //         */
+        //        imgPicture.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+        //                ((Bitmap)eventArgs.Frame.Clone()).GetHbitmap(),
+        //                IntPtr.Zero,
+        //                System.Windows.Int32Rect.Empty,
+        //                BitmapSizeOptions.FromWidthAndHeight((int)imgPicture.Width, (int)imgPicture.Height));
+        //    });
 
-            //MessageBox.Show(eventArgs.Frame.Clone().ToString());
-        }
+        //    //MessageBox.Show(eventArgs.Frame.Clone().ToString());
+        //}
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            fic = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach (FilterInfo fi in fic)
-                cmbCamera.Items.Add(fi.Name);
-            cmbCamera.SelectedIndex = 0;
-            vcd = new VideoCaptureDevice();
-        }
+        //private void Grid_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    fic = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+        //    foreach (FilterInfo fi in fic)
+        //        cmbCamera.Items.Add(fi.Name);
+        //    cmbCamera.SelectedIndex = 0;
+        //    vcd = new VideoCaptureDevice();
+        //}
 
-        public void ImageToFile(string filePath)
-        {
-            var image = imgPicture.Source;
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)image));
-                encoder.Save(fileStream);
-            }
-        }
+        //public void ImageToFile(string filePath)
+        //{
+        //    var image = imgPicture.Source;
+        //    using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //    {
+        //        BitmapEncoder encoder = new PngBitmapEncoder();
+        //        encoder.Frames.Add(BitmapFrame.Create((BitmapSource)image));
+        //        encoder.Save(fileStream);
+        //    }
+        //}
 
-        private void btnCaptureImage_Click(object sender, RoutedEventArgs e)
-        {
-            //if (vcd.IsRunning)
-            //{
-            //    ImageToFile("Test.png");
-            //    vcd.WaitForStop();
-            //    vcd = null;
-            //    //vcd.Stop();
-            //}
-            ImageToFile("Test.png");
-            this.Close();
-        }
+        //private void btnCaptureImage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //if (vcd.IsRunning)
+        //    //{
+        //    //    ImageToFile("Test.png");
+        //    //    vcd.WaitForStop();
+        //    //    vcd = null;
+        //    //    //vcd.Stop();
+        //    //}
+        //    ImageToFile("Test.png");
+        //    this.Close();
+        //}
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (vcd.IsRunning)
-            {
-                //ImageToFile("Test.png");
-                //vcd.WaitForStop();
-                vcd.SignalToStop(); // tells camera to stop working
-                //vcd.WaitForStop();
-                vcd = null;
+        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    if (vcd.IsRunning)
+        //    {
+        //        //ImageToFile("Test.png");
+        //        //vcd.WaitForStop();
+        //        vcd.SignalToStop(); // tells camera to stop working
+        //        //vcd.WaitForStop();
+        //        vcd = null;
 
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-        }
+        //        GC.Collect();
+        //        GC.WaitForPendingFinalizers();
+        //    }
+        //}
     }
 }
