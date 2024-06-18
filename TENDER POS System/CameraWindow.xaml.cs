@@ -48,6 +48,8 @@ namespace TENDER_POS_System
 
         private void DisplayItemDetails()
         {
+            lbStatusbar.Content = "Select an Image for " + _menuItem.Item_Name + "...";
+
             try
             {
                 string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
@@ -125,6 +127,12 @@ namespace TENDER_POS_System
             //    //vcd.Stop();
             //}
             ImageToFile("Test.png");
+            vcd.SignalToStop();
+            vcd = null;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             this.Close();
         }
 

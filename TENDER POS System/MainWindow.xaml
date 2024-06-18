@@ -16,16 +16,16 @@
 
         <Image x:Name="imgSidebar" Visibility="Visible" Source="/Sidebar Small.png" Margin="0,0,1798,0"/>
 
-        <Image x:Name="btnRice" Source="/Rice.png" Margin="21,141,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top"/>
+        <Image x:Name="btnRice" Source="/Rice.png" Margin="21,141,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top" Tag="1" MouseDown="CategoryChanger"/>
         <Label x:Name="lbRice" Content="Rice Meals" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="19,212,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
-        <Image x:Name="btnNoodles" Source="/Ramen.png" Margin="21,281,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top"/>
+        <Image x:Name="btnNoodles" Source="/Ramen.png" Margin="21,281,0,0" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Top" Tag="2" MouseDown="CategoryChanger"/>
         <Label x:Name="lbNoodles" Content="Noodles" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="19,354,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
-        <Image x:Name="btnBeverages" Source="/Beverages.png" Margin="27,432,0,0" HorizontalAlignment="Left" Width="64" Height="90" VerticalAlignment="Top"/>
+        <Image x:Name="btnBeverages" Source="/Beverages.png" Margin="27,432,0,0" HorizontalAlignment="Left" Width="64" Height="90" VerticalAlignment="Top" Tag="3" MouseDown="CategoryChanger"/>
         <Label x:Name="lbBeverages" Content="Beverages" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="19,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
-        <Image x:Name="btnSides" Source="/Gyoza.png" Margin="16,593,0,0" HorizontalAlignment="Left" Width="90" Height="68" VerticalAlignment="Top"/>
+        <Image x:Name="btnSides" Source="/Gyoza.png" Margin="16,593,0,0" HorizontalAlignment="Left" Width="90" Height="68" VerticalAlignment="Top" Tag="4" MouseDown="CategoryChanger"/>
         <Label x:Name="lbSides" Content="Sides" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="19,654,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
 
@@ -34,7 +34,7 @@
 
         <Image x:Name="imgLogo" Source="/TENDER Logo.png" Height="100" Width="100" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-        <Label x:Name="lbStatusbar" Content="Welcome to TENDER!" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="48" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="139,21,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="76" Width="497"/>
+        <Label x:Name="lbStatusbar" Content="Welcome to TENDER!" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="48" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="139,21,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="76" Width="1132"/>
 
 
         <Grid x:Name="grdMenuItems" Margin="122,118,637,7" Visibility="Visible">

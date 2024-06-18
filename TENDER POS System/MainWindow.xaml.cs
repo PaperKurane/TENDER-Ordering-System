@@ -96,6 +96,30 @@ namespace TENDER_POS_System
             }
         }
 
+        private void CategoryChanger(object sender, MouseButtonEventArgs e)
+        {
+            Image category = sender as Image;
+            string clickedCategory = category.Tag.ToString();
+
+            LoadMenuItems(clickedCategory);
+
+            switch (clickedCategory)
+            {
+                case "1":
+                    lbStatusbar.Content = "Now viewing rice meals...";
+                    break;
+                case "2":
+                    lbStatusbar.Content = "Now viewing the ramen selection...";
+                    break;
+                case "3":
+                    lbStatusbar.Content = "Now viewing our collection of beverages...";
+                    break;
+                case "4":
+                    lbStatusbar.Content = "Now viewing the list of side dishes...";
+                    break;
+            }
+        }
+
         private void imgItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image img = (Image)sender;
