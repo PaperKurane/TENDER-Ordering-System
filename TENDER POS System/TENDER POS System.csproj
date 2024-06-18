@@ -47,6 +47,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.8.0.6\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -218,6 +221,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\Add Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Camerabutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Camerabutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Uploadbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Uploadbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Add Button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

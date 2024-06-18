@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TENDER_POS_System"
         mc:Ignorable="d"
-        Title="CameraWindow" Height="450" Width="800">
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Title="CameraWindow" Height="720" Width="1280">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Main Background (Straight Wave).png"/>
+        </Grid.Background>
+
+        <Image x:Name="imgLogo" Source="/TENDER Logo.png" Height="107" Width="107" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lbStatusbar" Content="Change Image" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="62" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="122,12,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="94" Width="1120"/>
+
+        <Image x:Name="imgPicture" Source="/defaultimg.png" Height="487" Margin="24,162,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="487" Stretch="Fill"/>
+
+        <Grid x:Name="grdCameraMode" Visibility="Visible">
+            <Button x:Name="btnBackC" Content="Back" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="533,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FFEF5350" Foreground="White" Click="btnBackC_Click"/>
+            <Button x:Name="btnConfirmC" Content="Confirm Order" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
+
+            <Image x:Name="btnCameraC" Source="/Camerabutton.png" Margin="533,335,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345" MouseDown="btnCameraC_MouseDown"/>
+            <Image x:Name="btnUploadC" Source="/Uploadbutton.png" Margin="897,335,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top"/>
+
+            <ComboBox x:Name="cmbCameras" Margin="533,243,38,393"/>
+
+            <Label x:Name="lbIndicatorC" Content="TestLabel" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="52" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="533,162,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="73" Width="709" Background="{x:Null}"/>
+        </Grid>
+
+        <Grid x:Name="grdUploadMode" Visibility="Collapsed">
+            <Button x:Name="btnBackU" Content="Back" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="533,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FFEF5350" Foreground="White"/>
+            <Button x:Name="btnConfirmU" Content="Confirm Order" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
+
+            <Image x:Name="btnCameraU" Source="/Camerabutton.png" Margin="533,335,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345"/>
+            <Image x:Name="btnUploadU" Source="/Uploadbutton.png" Margin="897,335,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top"/>
+
+            <ComboBox Margin="533,243,38,407"/>
+
+            <Label x:Name="lbIndicatorU" Content="TestLabel" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="52" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="533,162,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="73" Width="709" Background="{x:Null}"/>
+        </Grid>
         
+        <Rectangle x:Name="rBorderReference" HorizontalAlignment="Center" Margin="0,680,0,0" Width="1280" Fill="Black" Stroke="Black" Height="24" VerticalAlignment="Top"/>
+        <Rectangle x:Name="rBorderReferenceVertical" HorizontalAlignment="Left" Height="704" Margin="1264,0,0,0" VerticalAlignment="Center" Width="16" Fill="Black" Stroke="Black"/>
+
     </Grid>
 </Window>
