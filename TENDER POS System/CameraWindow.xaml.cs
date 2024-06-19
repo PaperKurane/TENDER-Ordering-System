@@ -103,7 +103,7 @@ namespace TENDER_POS_System
             foreach (FilterInfo fi in fic)
                 cmbCameras.Items.Add(fi.Name);
             cmbCameras.SelectedIndex = 0;
-            vcd = new VideoCaptureDevice();
+            //vcd = new VideoCaptureDevice();
         }
 
         public void ImageToFile(string filePath)
