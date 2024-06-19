@@ -68,38 +68,9 @@ namespace TENDER_POS_System
 
         private void btnCameraC_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            StartCamera();
-        }
-
-        private void StartCamera()
-        {
-            if (vcd != null && vcd.IsRunning)
-            {
-                StopCamera();
-            }
-
-            if (cmbCameras.SelectedIndex >= 0)
-            {
-                vcd = new VideoCaptureDevice(fic[cmbCameras.SelectedIndex].MonikerString);
-                vcd.NewFrame += Vcd_NewFrame;
-                vcd.Start();
-            }
-        }
-
-        private void StopCamera()
-        {
-            if (vcd != null)
-            {
-                if (vcd.IsRunning)
-                {
-                    vcd.SignalToStop();
-                    vcd.WaitForStop();
-                }
-                vcd.NewFrame -= Vcd_NewFrame;
-                vcd = null;
-            }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            vcd = new VideoCaptureDevice(fic[cmbCameras.SelectedIndex].MonikerString);
+            vcd.NewFrame += Vcd_NewFrame;
+            vcd.Start();
         }
 
         private void Vcd_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -132,7 +103,7 @@ namespace TENDER_POS_System
             foreach (FilterInfo fi in fic)
                 cmbCameras.Items.Add(fi.Name);
             cmbCameras.SelectedIndex = 0;
-            //vcd = new VideoCaptureDevice();
+            vcd = new VideoCaptureDevice();
         }
 
         public void ImageToFile(string filePath)
@@ -159,23 +130,28 @@ namespace TENDER_POS_System
 
             // Place path to file here for sql submitting
 
-            StopCamera();
+            vcd.SignalToStop();
+            vcd.WaitForStop();
+            vcd = null;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             this.Close();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //if (vcd.IsRunning)
-            //{
-            //    //ImageToFile("Test.png");
-            //    vcd.SignalToStop(); // tells camera to stop working
-            //    vcd.WaitForStop();
-            //    vcd = null;
+            if (vcd.IsRunning)
+            {
+                //ImageToFile("Test.png");
+                vcd.SignalToStop(); // tells camera to stop working
+                vcd.WaitForStop();
+                vcd = null;
 
-            //    GC.Collect();
-            //    GC.WaitForPendingFinalizers();
-            //}
-            StopCamera();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
         }
     }
 }
