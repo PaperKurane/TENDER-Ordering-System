@@ -148,6 +148,8 @@ namespace TENDER_POS_System
 
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+
+                this.Close();
             }
         }
     }
