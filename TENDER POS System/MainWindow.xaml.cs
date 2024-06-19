@@ -127,7 +127,7 @@ namespace TENDER_POS_System
 
             if (item != null)
             {
-                OrderWindow ow = new OrderWindow(item);
+                OrderWindow ow = new OrderWindow(item, _dbConn);
                 ow.Owner = this;
                 ow.ShowDialog();
             }

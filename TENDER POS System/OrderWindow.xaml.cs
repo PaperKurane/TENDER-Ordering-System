@@ -25,16 +25,20 @@ namespace TENDER_POS_System
     {
         private MenuItem _menuItem;
 
+        TenderConnDataContext _dbConn = null;
+
         public OrderWindow()
         {
             InitializeComponent();
         }
 
-        public OrderWindow(MenuItem menuItem)
+        public OrderWindow(MenuItem menuItem, TenderConnDataContext connection)
         {
             InitializeComponent();
 
             _menuItem = menuItem;
+
+            _dbConn = connection;
 
             DisplayItemDetails();
         }
@@ -62,7 +66,7 @@ namespace TENDER_POS_System
 
         private void imgPicture_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CameraWindow cw = new CameraWindow(_menuItem);
+            CameraWindow cw = new CameraWindow(_menuItem, _dbConn);
             this.Hide();
             cw.ShowDialog();
             this.Show();

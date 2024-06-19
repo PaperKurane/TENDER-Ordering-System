@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Microsoft.Win32;
 
 namespace TENDER_POS_System
 {
@@ -29,19 +30,25 @@ namespace TENDER_POS_System
     {
         private MenuItem _menuItem;
 
+        TenderConnDataContext _dbConn = null;
+
         FilterInfoCollection fic = null;
         VideoCaptureDevice vcd = null;
+
+        BitmapImage _default = new BitmapImage();
 
         public CameraWindow()
         {
             InitializeComponent();
         }
 
-        public CameraWindow(MenuItem menuItem)
+        public CameraWindow(MenuItem menuItem, TenderConnDataContext connection)
         {
             InitializeComponent();
 
             _menuItem = menuItem;
+
+            _dbConn = connection;
 
             DisplayItemDetails();
         }
@@ -66,6 +73,7 @@ namespace TENDER_POS_System
             this.Close();
         }
 
+        #region Camera
         private void btnCameraC_MouseDown(object sender, MouseButtonEventArgs e)
         {
             vcd = new VideoCaptureDevice(fic[cmbCameras.SelectedIndex].MonikerString);
@@ -139,6 +147,7 @@ namespace TENDER_POS_System
 
             this.Close();
         }
+        #endregion 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -149,6 +158,22 @@ namespace TENDER_POS_System
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        private void btnUploadC_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Browse Photos...";
+            ofd.DefaultExt = "png";
+            ofd.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+                "All files (*.*)|*.*";
+
+            ofd.ShowDialog();
+
+            if (ofd.FileName.Length > 0)
+            {
+                //txtPath.Text = ofd.FileName;
+            }
         }
     }
 }

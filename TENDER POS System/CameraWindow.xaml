@@ -21,7 +21,7 @@
             <Button x:Name="btnConfirmC" Content="Confirm Image" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
 
             <Image x:Name="btnCameraC" Source="/Camerabutton.png" Margin="533,348,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345" MouseDown="btnCameraC_MouseDown"/>
-            <Image x:Name="btnUploadC" Source="/Uploadbutton.png" Margin="897,348,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top"/>
+            <Image x:Name="btnUploadC" Source="/Uploadbutton.png" Margin="897,348,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top" MouseDown="btnUploadC_MouseDown"/>
 
             <ComboBox x:Name="cmbCameras" Margin="533,284,0,0" FontFamily="Segoe UI SemiBold" FontSize="24" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="709"/>
 
