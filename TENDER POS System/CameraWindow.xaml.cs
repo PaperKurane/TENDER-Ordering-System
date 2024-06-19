@@ -142,16 +142,13 @@ namespace TENDER_POS_System
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (vcd.IsRunning)
-            {
-                //ImageToFile("Test.png");
-                vcd.SignalToStop(); // tells camera to stop working
-                vcd.WaitForStop();
-                vcd = null;
+            //ImageToFile("Test.png");
+            vcd.SignalToStop(); // tells camera to stop working
+            vcd.WaitForStop();
+            vcd = null;
 
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }
