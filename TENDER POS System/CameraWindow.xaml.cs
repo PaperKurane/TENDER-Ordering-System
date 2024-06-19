@@ -127,6 +127,9 @@ namespace TENDER_POS_System
             //    //vcd.Stop();
             //}
             ImageToFile("Test.png");
+
+            // Place path to file here for sql submitting
+
             vcd.SignalToStop();
             vcd = null;
 
@@ -141,15 +144,12 @@ namespace TENDER_POS_System
             if (vcd.IsRunning)
             {
                 //ImageToFile("Test.png");
-                //vcd.WaitForStop();
                 vcd.SignalToStop(); // tells camera to stop working
-                //vcd.WaitForStop();
+                vcd.WaitForStop();
                 vcd = null;
 
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-
-                this.Close();
             }
         }
     }
