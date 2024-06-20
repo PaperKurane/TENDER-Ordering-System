@@ -2,35 +2,35 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TenderConn">
   <DataContextMoniker Name="/TenderConnDataContext" />
   <nestedChildShapes>
-    <classShape Id="70a0f257-5cc6-472d-b6ad-e8de9cd6a44b" absoluteBounds="0.75, 3.75, 2, 1.193992513020834">
+    <classShape Id="647b83d9-fe87-4162-9963-03484db3189b" absoluteBounds="0.75, 3.75, 2, 1.193992513020834">
       <DataClassMoniker Name="/TenderConnDataContext/Item_Category" />
       <nestedChildShapes>
-        <elementListCompartment Id="e8ae1268-b2b6-49d4-96a5-8c4d14ec79b8" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3bd0b336-d8f4-419c-bea9-1eb28e134469" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="19c6ad39-53fa-4ab0-acd3-a0ede3bbb3d8" absoluteBounds="3.75, 3.75, 2, 1.9631982421875005">
+    <classShape Id="1fd2af2e-4d62-4414-ae69-58a8b0f5430b" absoluteBounds="3.75, 3.75, 2, 1.9631982421875005">
       <DataClassMoniker Name="/TenderConnDataContext/Menu_Item" />
       <nestedChildShapes>
-        <elementListCompartment Id="513126e3-328a-443a-a37d-cbedfb6eb1c7" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="026c308c-a502-4da6-b8f5-c89504ae133f" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2a008959-c356-496d-a16d-f008eaf59081" absoluteBounds="0.75, 1.125, 2, 1.3862939453125">
+    <classShape Id="7974eee2-c16d-4d7c-9568-7869decbea53" absoluteBounds="0.75, 1.125, 2, 1.3862939453125">
       <DataClassMoniker Name="/TenderConnDataContext/Order" />
       <nestedChildShapes>
-        <elementListCompartment Id="bdc0f361-63de-4ffb-aea5-0a9da5d14e0d" absoluteBounds="0.765, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7b7849fc-6099-4ff2-842b-f0b249a57b73" absoluteBounds="0.765, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="78089df3-4387-4cdf-85a2-ebb0a6c4f2ff" absoluteBounds="3.5, 0.875, 2, 1.7708968098958331">
+    <classShape Id="00b41b17-c239-4157-9483-ba0c16589d98" absoluteBounds="3.5, 0.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/TenderConnDataContext/Order_Item" />
       <nestedChildShapes>
-        <elementListCompartment Id="c5b491af-cca9-413d-ab08-7face82cbb9c" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="78caebb2-50d9-416e-ae01-93e326d8ca39" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 1.81814697265625); (3.5 : 1.81814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TenderConnDataContext/Order/Order_Order_Item" />
       <nodes>
-        <classShapeMoniker Id="2a008959-c356-496d-a16d-f008eaf59081" />
-        <classShapeMoniker Id="78089df3-4387-4cdf-85a2-ebb0a6c4f2ff" />
+        <classShapeMoniker Id="7974eee2-c16d-4d7c-9568-7869decbea53" />
+        <classShapeMoniker Id="00b41b17-c239-4157-9483-ba0c16589d98" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

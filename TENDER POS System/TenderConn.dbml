@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Tender" Class="TenderConnDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=CCL02-31;Initial Catalog=Tender;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False" SettingsObjectName="TENDER_POS_System.Properties.Settings" SettingsPropertyName="TenderConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=CLOUDCOMPUTER\SQLEXPRESS;Initial Catalog=Tender;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="TENDER_POS_System.Properties.Settings" SettingsPropertyName="TenderConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Item_Category" Member="Item_Categories">
     <Type Name="Item_Category">
       <Column Name="Category_ID" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

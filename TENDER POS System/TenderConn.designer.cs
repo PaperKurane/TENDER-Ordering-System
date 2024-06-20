@@ -45,7 +45,7 @@ namespace TENDER_POS_System
     #endregion
 		
 		public TenderConnDataContext() : 
-				base(global::TENDER_POS_System.Properties.Settings.Default.TenderConnectionString, mappingSource)
+				base(global::TENDER_POS_System.Properties.Settings.Default.TenderConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

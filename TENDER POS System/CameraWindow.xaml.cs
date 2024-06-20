@@ -200,7 +200,8 @@ namespace TENDER_POS_System
         {
             if (imgPicture.Source != null)
             {
-                string fileName = $"{_menuItem.Item_Name}_{DateTime.Now:yyyyMMddHH}.png";
+                //string fileName = $"{_menuItem.Item_Name}_{DateTime.Now:yyyyMMddHH}.png";
+                string fileName = $"{_menuItem.Item_Name.Replace(" ","").ToLower()}.jpg";
                 string filePath = $"pack://application:,,,/Resources/Menu Items/{fileName}";
 
                 SaveImageToFile(filePath);
