@@ -236,5 +236,8 @@
   <ItemGroup>
     <Resource Include="Add Button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Menu Items\karaagebowl.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -202,13 +202,27 @@ namespace TENDER_POS_System
             {
                 //string fileName = $"{_menuItem.Item_Name}_{DateTime.Now:yyyyMMddHH}.png";
                 string fileName = $"{_menuItem.Item_Name.Replace(" ","").ToLower()}.jpg";
-                string filePath = $"pack://application:,,,/Resources/Menu Items/{fileName}";
 
-                SaveImageToFile(filePath);
+                // Determine the correct project directory
+                string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string relativePath = @"..\..\..\TENDER POS System\Resources\Menu Items";
+                string directoryPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(projectDirectory, relativePath));
+
+                // Ensure the directory exists
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                // Complete file path
+                string localPath = System.IO.Path.Combine(directoryPath, fileName);
+
+
+                SaveImageToFile(localPath);
 
                 _menuItem.Item_Image = fileName;
 
-                //UpdateMenuItemImageInDatabase(fileName);
+                UpdateMenuItemImageInDatabase(fileName);
 
                 CloseCamera();
                 this.Close();
@@ -219,33 +233,40 @@ namespace TENDER_POS_System
             }
         }
 
-        private void SaveImageToFile(string filePath)
+        private void SaveImageToFile(string localPath)
         {
-            var image = imgPicture.Source as BitmapSource;
-            if (image != null)
+            try
             {
-                // Get the local file path from the pack URI
-                Uri uri = new Uri(filePath);
-                string localPath = uri.LocalPath;
+                // Ensure the directory exists
+                string directoryPath = System.IO.Path.GetDirectoryName(localPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
 
+                // Save the image to the specified path
                 using (var fileStream = new FileStream(localPath, FileMode.Create))
                 {
                     BitmapEncoder encoder = new PngBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create(image));
+                    encoder.Frames.Add(BitmapFrame.Create((BitmapSource)imgPicture.Source));
                     encoder.Save(fileStream);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving image: {ex.Message}");
+            }
         }
 
-        //private void UpdateMenuItemImageInDatabase(string fileName)
-        //{
-        //    var item = _dbConn.MenuItems.FirstOrDefault(i => i.Item_ID == _menuItem.Item_ID);
-        //    if (item != null)
-        //    {
-        //        item.Item_Image = fileName;
-        //        _dbConn.SubmitChanges();
-        //    }
-        //}
+        private void UpdateMenuItemImageInDatabase(string fileName)
+        {
+            var item = _dbConn.Menu_Items.FirstOrDefault(i => i.Item_ID == _menuItem.Item_ID);
+            if (item != null)
+            {
+                item.Item_Image = fileName;
+                _dbConn.SubmitChanges();
+            }
+        }
 
         private void btnConfirmU_Click(object sender, RoutedEventArgs e)
         {
