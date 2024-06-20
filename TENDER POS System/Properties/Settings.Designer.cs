@@ -26,7 +26,7 @@ namespace TENDER_POS_System.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CCL02-31;Initial Catalog=Tender;Integrated Security=True;Connect Time" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CCL01-02;Initial Catalog=Tender;Integrated Security=True;Connect Time" +
             "out=30;Encrypt=False;TrustServerCertificate=False")]
         public string TenderConnectionString {
             get {

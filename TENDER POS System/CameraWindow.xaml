@@ -17,13 +17,13 @@
         <Image x:Name="imgPicture" Source="/defaultimg.png" Height="487" Margin="24,162,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="487" Stretch="Fill"/>
 
         <Grid x:Name="grdCameraMode" Visibility="Visible">
-            <Button x:Name="btnConfirmC" Content="Confirm Image" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
+            <Button x:Name="btnConfirmC" Content="Confirm Image" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White" Click="btnConfirmC_Click"/>
 
             <ComboBox x:Name="cmbCameras" Margin="533,284,0,0" FontFamily="Segoe UI SemiBold" FontSize="24" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="709" BorderBrush="{x:Null}"/>
         </Grid>
 
         <Grid x:Name="grdUploadMode" Visibility="Collapsed">
-            <Button x:Name="btnConfirmU" Content="Confirm Order" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
+            <Button x:Name="btnConfirmU" Content="Confirm Image" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White" Click="btnConfirmU_Click"/>
 
             <Label x:Name="lbFileName" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="20" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="528,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="53" Width="720" Background="{x:Null}" RenderTransformOrigin="0.5,0.5">
                 <TextBlock Text="" TextWrapping="Wrap" Height="48" Width="709" Background="#FFE5E5E5"/>

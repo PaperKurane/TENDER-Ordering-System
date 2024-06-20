@@ -195,5 +195,60 @@ namespace TENDER_POS_System
                 }
             }
         }
+
+        private void btnConfirmC_Click(object sender, RoutedEventArgs e)
+        {
+            if (imgPicture.Source != null)
+            {
+                string fileName = $"{_menuItem.Item_Name}_{DateTime.Now:yyyyMMddHH}.png";
+                string filePath = $"pack://application:,,,/Resources/Menu Items/{fileName}";
+
+                SaveImageToFile(filePath);
+
+                _menuItem.Item_Image = fileName;
+
+                //UpdateMenuItemImageInDatabase(fileName);
+
+                CloseCamera();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No image to save.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SaveImageToFile(string filePath)
+        {
+            var image = imgPicture.Source as BitmapSource;
+            if (image != null)
+            {
+                // Get the local file path from the pack URI
+                Uri uri = new Uri(filePath);
+                string localPath = uri.LocalPath;
+
+                using (var fileStream = new FileStream(localPath, FileMode.Create))
+                {
+                    BitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(image));
+                    encoder.Save(fileStream);
+                }
+            }
+        }
+
+        //private void UpdateMenuItemImageInDatabase(string fileName)
+        //{
+        //    var item = _dbConn.MenuItems.FirstOrDefault(i => i.Item_ID == _menuItem.Item_ID);
+        //    if (item != null)
+        //    {
+        //        item.Item_Image = fileName;
+        //        _dbConn.SubmitChanges();
+        //    }
+        //}
+
+        private void btnConfirmU_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

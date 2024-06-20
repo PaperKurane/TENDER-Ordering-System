@@ -46,6 +46,7 @@ namespace TENDER_POS_System
                             Item_ID = item.Item_ID,
                             Item_Name = item.Item_Name,
                             Category_ID = item.Category_ID,
+                            Item_Description = item.Item_Description,
                             Item_Price = item.Item_Price,
                             Item_Image = item.Item_Image
                         };
