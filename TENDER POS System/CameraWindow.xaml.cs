@@ -37,6 +37,8 @@ namespace TENDER_POS_System
 
         BitmapImage _default = new BitmapImage();
 
+        bool _cameraMode = false;
+
         public CameraWindow()
         {
             InitializeComponent();
@@ -68,14 +70,18 @@ namespace TENDER_POS_System
             }
         }
 
-        private void btnBackC_Click(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         #region Camera
-        private void btnCameraC_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnCamera_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            _cameraMode = true;
+            grdCameraMode.Visibility = Visibility.Visible;
+            grdUploadMode.Visibility = Visibility.Collapsed;
+
             vcd = new VideoCaptureDevice(fic[cmbCameras.SelectedIndex].MonikerString);
             vcd.NewFrame += Vcd_NewFrame;
             vcd.Start();
@@ -138,41 +144,55 @@ namespace TENDER_POS_System
 
             // Place path to file here for sql submitting
 
-            vcd.SignalToStop();
-            vcd.WaitForStop();
-            vcd = null;
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            CloseCamera();
 
             this.Close();
+        }
+
+        private void CloseCamera()
+        {
+            if (_cameraMode == true)
+            {
+                //ImageToFile("Test.png");
+                vcd.SignalToStop();
+                vcd.WaitForStop();
+                vcd = null;
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                _cameraMode = false;
+            }
         }
         #endregion 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //ImageToFile("Test.png");
-            vcd.SignalToStop(); // tells camera to stop working
-            vcd.WaitForStop();
-            vcd = null;
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            CloseCamera();
         }
 
-        private void btnUploadC_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnUpload_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Browse Photos...";
-            ofd.DefaultExt = "png";
-            ofd.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
-                "All files (*.*)|*.*";
+            CloseCamera();
+            grdUploadMode.Visibility = Visibility.Visible;
+            grdCameraMode.Visibility = Visibility.Collapsed;
 
-            ofd.ShowDialog();
+            DisplayItemDetails();
 
-            if (ofd.FileName.Length > 0)
+            if (_cameraMode == false)
             {
-                //txtPath.Text = ofd.FileName;
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Title = "Browse Photos...";
+                ofd.DefaultExt = "png";
+                ofd.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+                    "All files (*.*)|*.*";
+
+                ofd.ShowDialog();
+
+                if (ofd.FileName.Length > 0)
+                {
+                    lbFileName.Content = ofd.FileName;
+                }
             }
         }
     }

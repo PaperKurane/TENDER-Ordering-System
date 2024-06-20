@@ -17,31 +17,28 @@
         <Image x:Name="imgPicture" Source="/defaultimg.png" Height="487" Margin="24,162,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="487" Stretch="Fill"/>
 
         <Grid x:Name="grdCameraMode" Visibility="Visible">
-            <Button x:Name="btnBackC" Content="Back" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="533,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FFEF5350" Foreground="White" Click="btnBackC_Click"/>
             <Button x:Name="btnConfirmC" Content="Confirm Image" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
 
-            <Image x:Name="btnCameraC" Source="/Camerabutton.png" Margin="533,348,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345" MouseDown="btnCameraC_MouseDown"/>
-            <Image x:Name="btnUploadC" Source="/Uploadbutton.png" Margin="897,348,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top" MouseDown="btnUploadC_MouseDown"/>
-
-            <ComboBox x:Name="cmbCameras" Margin="533,284,0,0" FontFamily="Segoe UI SemiBold" FontSize="24" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="709"/>
-
-            <Label x:Name="lbIndicatorC" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="38" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="533,162,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="116" Width="709" Background="{x:Null}">
-                <TextBlock Text="Click Camera to take a new picture, or Upload for a custom image" TextWrapping="Wrap" Height="106" Width="699"/>
-            </Label>
+            <ComboBox x:Name="cmbCameras" Margin="533,284,0,0" FontFamily="Segoe UI SemiBold" FontSize="24" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="709" BorderBrush="{x:Null}"/>
         </Grid>
 
         <Grid x:Name="grdUploadMode" Visibility="Collapsed">
-            <Button x:Name="btnBackU" Content="Back" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="533,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FFEF5350" Foreground="White"/>
             <Button x:Name="btnConfirmU" Content="Confirm Order" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="897,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FF81C784" Foreground="White"/>
 
-            <Image x:Name="btnCameraU" Source="/Camerabutton.png" Margin="533,335,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345"/>
-            <Image x:Name="btnUploadU" Source="/Uploadbutton.png" Margin="897,335,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top"/>
-
-            <ComboBox Margin="533,243,38,407"/>
-
-            <Label x:Name="lbIndicatorU" Content="TestLabel" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="52" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="533,162,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="73" Width="709" Background="{x:Null}"/>
+            <Label x:Name="lbFileName" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="20" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="528,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="53" Width="720" Background="{x:Null}" RenderTransformOrigin="0.5,0.5">
+                <TextBlock Text="" TextWrapping="Wrap" Height="48" Width="709" Background="#FFE5E5E5"/>
+            </Label>
         </Grid>
 
+        <Image x:Name="btnCamera" Source="/Camerabutton.png" Margin="533,348,0,0" Height="199" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345" MouseDown="btnCamera_MouseDown"/>
+        <Image x:Name="btnUpload" Source="/Uploadbutton.png" Margin="897,348,0,0" HorizontalAlignment="Left" Width="345" Height="200" VerticalAlignment="Top" MouseDown="btnUpload_MouseDown"/>
+      
+        <Button x:Name="btnBack" Content="Back" FontSize="42" FontFamily="Segoe UI SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="533,568,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="79" Width="345" BorderThickness="4" BorderBrush="Black" Background="#FFEF5350" Foreground="White" Click="btnBack_Click"/>
+
+        <Label x:Name="lbIndicator" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="38" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="533,162,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="116" Width="709" Background="{x:Null}">
+            <TextBlock Text="Click Camera to take a new picture, or Upload for a custom image" TextWrapping="Wrap" Height="106" Width="699"/>
+        </Label>
+        
         <Image x:Name="imgLogo" Source="/TENDER Logo.png" Height="107" Width="107" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label x:Name="lbStatusbar" Content="Editing..." Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="42" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="128,15,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="94" Width="1114"/>
 

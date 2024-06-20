@@ -117,8 +117,6 @@ namespace TENDER_POS_System
 		
 		private string _Category_Name;
 		
-		private EntitySet<Menu_Item> _Menu_Items;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -131,7 +129,6 @@ namespace TENDER_POS_System
 		
 		public Item_Category()
 		{
-			this._Menu_Items = new EntitySet<Menu_Item>(new Action<Menu_Item>(this.attach_Menu_Items), new Action<Menu_Item>(this.detach_Menu_Items));
 			OnCreated();
 		}
 		
@@ -175,19 +172,6 @@ namespace TENDER_POS_System
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Item_Category_Menu_Item", Storage="_Menu_Items", ThisKey="Category_ID", OtherKey="Category_ID")]
-		public EntitySet<Menu_Item> Menu_Items
-		{
-			get
-			{
-				return this._Menu_Items;
-			}
-			set
-			{
-				this._Menu_Items.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -207,18 +191,6 @@ namespace TENDER_POS_System
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Menu_Items(Menu_Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item_Category = this;
-		}
-		
-		private void detach_Menu_Items(Menu_Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item_Category = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Menu_Item")]
@@ -227,30 +199,30 @@ namespace TENDER_POS_System
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Item_ID;
+		private int _Item_ID;
 		
 		private string _Item_Name;
 		
 		private string _Category_ID;
 		
+		private string _Item_Description;
+		
 		private int _Item_Price;
 		
 		private string _Item_Image;
-		
-		private EntitySet<Order_Item> _Order_Items;
-		
-		private EntityRef<Item_Category> _Item_Category;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnItem_IDChanging(string value);
+    partial void OnItem_IDChanging(int value);
     partial void OnItem_IDChanged();
     partial void OnItem_NameChanging(string value);
     partial void OnItem_NameChanged();
     partial void OnCategory_IDChanging(string value);
     partial void OnCategory_IDChanged();
+    partial void OnItem_DescriptionChanging(string value);
+    partial void OnItem_DescriptionChanged();
     partial void OnItem_PriceChanging(int value);
     partial void OnItem_PriceChanged();
     partial void OnItem_ImageChanging(string value);
@@ -259,13 +231,11 @@ namespace TENDER_POS_System
 		
 		public Menu_Item()
 		{
-			this._Order_Items = new EntitySet<Order_Item>(new Action<Order_Item>(this.attach_Order_Items), new Action<Order_Item>(this.detach_Order_Items));
-			this._Item_Category = default(EntityRef<Item_Category>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_ID", DbType="VarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Item_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Item_ID
 		{
 			get
 			{
@@ -315,15 +285,31 @@ namespace TENDER_POS_System
 			{
 				if ((this._Category_ID != value))
 				{
-					if (this._Item_Category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnCategory_IDChanging(value);
 					this.SendPropertyChanging();
 					this._Category_ID = value;
 					this.SendPropertyChanged("Category_ID");
 					this.OnCategory_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Description", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Item_Description
+		{
+			get
+			{
+				return this._Item_Description;
+			}
+			set
+			{
+				if ((this._Item_Description != value))
+				{
+					this.OnItem_DescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Item_Description = value;
+					this.SendPropertyChanged("Item_Description");
+					this.OnItem_DescriptionChanged();
 				}
 			}
 		}
@@ -368,53 +354,6 @@ namespace TENDER_POS_System
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Menu_Item_Order_Item", Storage="_Order_Items", ThisKey="Item_ID", OtherKey="Item_ID")]
-		public EntitySet<Order_Item> Order_Items
-		{
-			get
-			{
-				return this._Order_Items;
-			}
-			set
-			{
-				this._Order_Items.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Item_Category_Menu_Item", Storage="_Item_Category", ThisKey="Category_ID", OtherKey="Category_ID", IsForeignKey=true)]
-		public Item_Category Item_Category
-		{
-			get
-			{
-				return this._Item_Category.Entity;
-			}
-			set
-			{
-				Item_Category previousValue = this._Item_Category.Entity;
-				if (((previousValue != value) 
-							|| (this._Item_Category.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Item_Category.Entity = null;
-						previousValue.Menu_Items.Remove(this);
-					}
-					this._Item_Category.Entity = value;
-					if ((value != null))
-					{
-						value.Menu_Items.Add(this);
-						this._Category_ID = value.Category_ID;
-					}
-					else
-					{
-						this._Category_ID = default(string);
-					}
-					this.SendPropertyChanged("Item_Category");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -433,18 +372,6 @@ namespace TENDER_POS_System
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Order_Items(Order_Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Menu_Item = this;
-		}
-		
-		private void detach_Order_Items(Order_Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Menu_Item = null;
 		}
 	}
 	
@@ -602,8 +529,6 @@ namespace TENDER_POS_System
 		
 		private int _Price;
 		
-		private EntityRef<Menu_Item> _Menu_Item;
-		
 		private EntityRef<Order> _Order;
 		
     #region Extensibility Method Definitions
@@ -624,7 +549,6 @@ namespace TENDER_POS_System
 		
 		public Order_Item()
 		{
-			this._Menu_Item = default(EntityRef<Menu_Item>);
 			this._Order = default(EntityRef<Order>);
 			OnCreated();
 		}
@@ -684,10 +608,6 @@ namespace TENDER_POS_System
 			{
 				if ((this._Item_ID != value))
 				{
-					if (this._Menu_Item.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnItem_IDChanging(value);
 					this.SendPropertyChanging();
 					this._Item_ID = value;
@@ -733,40 +653,6 @@ namespace TENDER_POS_System
 					this._Price = value;
 					this.SendPropertyChanged("Price");
 					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Menu_Item_Order_Item", Storage="_Menu_Item", ThisKey="Item_ID", OtherKey="Item_ID", IsForeignKey=true)]
-		public Menu_Item Menu_Item
-		{
-			get
-			{
-				return this._Menu_Item.Entity;
-			}
-			set
-			{
-				Menu_Item previousValue = this._Menu_Item.Entity;
-				if (((previousValue != value) 
-							|| (this._Menu_Item.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Menu_Item.Entity = null;
-						previousValue.Order_Items.Remove(this);
-					}
-					this._Menu_Item.Entity = value;
-					if ((value != null))
-					{
-						value.Order_Items.Add(this);
-						this._Item_ID = value.Item_ID;
-					}
-					else
-					{
-						this._Item_ID = default(string);
-					}
-					this.SendPropertyChanged("Menu_Item");
 				}
 			}
 		}
