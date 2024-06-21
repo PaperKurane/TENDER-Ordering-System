@@ -61,7 +61,8 @@ namespace TENDER_POS_System
 
             try
             {
-                string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
+                //string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
+                string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
                 imgPicture.Source = new BitmapImage(new Uri(imagePath));
             }
             catch

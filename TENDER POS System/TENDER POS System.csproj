@@ -237,7 +237,9 @@
     <Resource Include="Add Button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Menu Items\karaagebowl.jpg" />
+    <Resource Include="Resources\Menu Items\karaagebowl.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
