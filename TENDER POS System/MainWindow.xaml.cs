@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,9 @@ namespace TENDER_POS_System
                     {
                         //string imagePath = $"pack://application:,,,/Resources/Menu Items/{item.Item_Image}";
                         string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{item.Item_Image}";
-                        img.Source = new BitmapImage(new Uri(imagePath));
+                        BitmapImage bmi = LoadImage(imagePath);
+                        //img.Source = new BitmapImage(new Uri(imagePath));
+                        img.Source = bmi;
                     }
                     catch
                     {
@@ -96,6 +99,20 @@ namespace TENDER_POS_System
                     text.Visibility = Visibility.Visible;
                 }
             }
+        }
+
+        private BitmapImage LoadImage(string imagePath)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+            {
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = stream;
+                bitmap.EndInit();
+            }
+            bitmap.Freeze(); // Ensure the image is decoupled from the file
+            return bitmap;
         }
 
         private void CategoryChanger(object sender, MouseButtonEventArgs e)

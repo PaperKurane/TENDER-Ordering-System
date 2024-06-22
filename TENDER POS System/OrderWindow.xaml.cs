@@ -52,12 +52,28 @@ namespace TENDER_POS_System
             {
                 //string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
                 string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
-                imgPicture.Source = new BitmapImage(new Uri(imagePath));
+                BitmapImage bmi = LoadImage(imagePath);
+                //imgPicture.Source = new BitmapImage(new Uri(imagePath));
+                imgPicture.Source = bmi;
             }
             catch
             {
                 imgPicture.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Menu Items/defaultimg.png"));
             }
+        }
+
+        private BitmapImage LoadImage(string imagePath)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+            {
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = stream;
+                bitmap.EndInit();
+            }
+            bitmap.Freeze(); // Ensure the image is decoupled from the file
+            return bitmap;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -68,9 +84,11 @@ namespace TENDER_POS_System
         private void imgPicture_MouseDown(object sender, MouseButtonEventArgs e)
         {
             CameraWindow cw = new CameraWindow(_menuItem, _dbConn);
-            this.Hide();
+            //this.Hide();
+            //cw.ShowDialog();
+            //this.Show();
+            cw.Owner = this;
             cw.ShowDialog();
-            this.Show();
         }
     }
 }
