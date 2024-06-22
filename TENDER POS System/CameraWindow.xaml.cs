@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Microsoft.Win32;
+using System.Net.NetworkInformation;
 
 namespace TENDER_POS_System
 {
@@ -38,6 +39,8 @@ namespace TENDER_POS_System
         BitmapImage _default = new BitmapImage();
 
         bool _cameraMode = false;
+
+        string imagePath = null;
 
         public CameraWindow()
         {
@@ -59,16 +62,42 @@ namespace TENDER_POS_System
         {
             lbStatusbar.Content = "Select an Image for " + _menuItem.Item_Name + "...";
 
+            //try
+            //{
+            //    //string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
+            //    string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
+            //    //imgPicture.Source = new BitmapImage(new Uri(imagePath));
+            //    ReplaceImageSource(imagePath, imgPicture);
+            //}
+            //catch
+            //{
+            //    imgPicture.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Menu Items/defaultimg.png"));
+            //}
+
             try
             {
-                //string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
-                string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
-                imgPicture.Source = new BitmapImage(new Uri(imagePath));
+                imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
+                BitmapImage bmi = LoadImage(imagePath);
+                imgPicture.Source = bmi;
             }
-            catch
+            catch (Exception ex)
             {
-                imgPicture.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Menu Items/defaultimg.png"));
+                MessageBox.Show($"Error loading image: {ex.Message}");
             }
+        }
+        
+        private BitmapImage LoadImage(string imagePath)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+            {
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = stream;
+                bitmap.EndInit();
+            }
+            bitmap.Freeze(); // Ensure the image is decoupled from the file
+            return bitmap;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -77,6 +106,15 @@ namespace TENDER_POS_System
         }
 
         #region Camera
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            fic = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo fi in fic)
+                cmbCameras.Items.Add(fi.Name);
+            cmbCameras.SelectedIndex = 0;
+            //vcd = new VideoCaptureDevice();
+        }
+
         private void btnCamera_MouseDown(object sender, MouseButtonEventArgs e)
         {
             _cameraMode = true;
@@ -112,26 +150,6 @@ namespace TENDER_POS_System
             //MessageBox.Show(eventArgs.Frame.Clone().ToString());
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            fic = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach (FilterInfo fi in fic)
-                cmbCameras.Items.Add(fi.Name);
-            cmbCameras.SelectedIndex = 0;
-            //vcd = new VideoCaptureDevice();
-        }
-
-        public void ImageToFile(string filePath)
-        {
-            var image = imgPicture.Source;
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)image));
-                encoder.Save(fileStream);
-            }
-        }
-
         private void btnCaptureImage_Click(object sender, RoutedEventArgs e)
         {
             //if (vcd.IsRunning)
@@ -150,11 +168,21 @@ namespace TENDER_POS_System
             this.Close();
         }
 
+        public void ImageToFile(string filePath)
+        {
+            var image = imgPicture.Source;
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)image));
+                encoder.Save(fileStream);
+            }
+        }
+
         private void CloseCamera()
         {
             if (_cameraMode == true)
             {
-                //ImageToFile("Test.png");
                 vcd.SignalToStop();
                 vcd.WaitForStop();
                 vcd = null;
@@ -199,73 +227,107 @@ namespace TENDER_POS_System
 
         private void btnConfirmC_Click(object sender, RoutedEventArgs e)
         {
-            if (imgPicture.Source != null)
+            if (_cameraMode == true)
             {
-                //string fileName = $"{_menuItem.Item_Name}_{DateTime.Now:yyyyMMddHH}.png";
-                string fileName = $"{_menuItem.Item_Name.Replace(" ","").ToLower()}.jpg";
+                //if (lbFileName.Content.ToString().Length > 0)
+                //{
+                //    string[] temp = cmbCameras.Text.Split('.');
+                //    string ext = temp[temp.Length - 1];
 
-                // Determine the correct project directory
-                string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string relativePath = @"..\..\..\TENDER POS System\Resources\Menu Items";
-                string directoryPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(projectDirectory, relativePath));
+                //    imgPicture.Source = _default;
+                //    File.Copy(cmbCameras.Text, imagePath + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext, true);
+                //    _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext);
+                //    //cmbCameras.Text = "";
+                //    //populateCB();
+                //}
 
-                // Ensure the directory exists
-                if (!Directory.Exists(directoryPath))
+                //if (lbFileName.Content.ToString().Length > 0)
+                //{
+                //    string[] temp = cmbCameras.Text.Split('.');
+                //    string ext = temp[temp.Length - 1];
+
+                //    imgPicture.Source = _default;
+                //    File.Copy(cmbCameras.Text, imagePath + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext, true);
+                //    _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext);
+                //}
+
+                try
                 {
-                    Directory.CreateDirectory(directoryPath);
+                    //string[] temp = imgPicture.Source.ToString().Split('.');
+                    //string ext = temp[temp.Length - 1];
+
+                    string ext = "png";
+
+                    string tempFilePath = $"E:/ProgrammingShit/TENDER Ordering System/Temp/" + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
+                    //string destinationPath = imagePath;
+
+                    SaveCapturedImage(tempFilePath);
+                    //imgPicture.Source = _default; // Reset the image source to avoid file lock
+                    File.Copy(tempFilePath, imgPicture.Source.ToString(), true);
+                    _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext);
+
+                    CloseCamera();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving image: {ex.Message}");
                 }
 
-                // Complete file path
-                string localPath = System.IO.Path.Combine(directoryPath, fileName);
+                //if (lbFileName.Content.ToString().Length > 0)
+                //{
+                //    string ext = "png";
+                //    string tempFilePath = $"E:/ProgrammingShit/TENDER Ordering System/Temp/" + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
 
+                //    SaveCapturedImage(tempFilePath);
 
-                SaveImageToFile(localPath);
+                //    imgPicture.Source = _default;
 
-                _menuItem.Item_Image = fileName;
+                //    string destinationFilePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/" + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
+                //    File.Copy(tempFilePath, destinationFilePath, true);
 
-                UpdateMenuItemImageInDatabase(fileName);
+                //    //File.Copy(imgPicture.ToString(), imagePath + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext, true);
+                //    _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext);
 
-                CloseCamera();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("No image to save.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //    File.Delete(tempFilePath);
+
+                //    CloseCamera();
+
+                //    // Set the new image source
+                //    var bitmap = new BitmapImage();
+                //    bitmap.BeginInit();
+                //    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                //    bitmap.UriCachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
+                //    bitmap.UriSource = new Uri(destinationFilePath, UriKind.Absolute);
+                //    bitmap.EndInit();
+
+                //    imgPicture.Source = bitmap;
+                //}
             }
         }
 
-        private void SaveImageToFile(string localPath)
+        private void SaveCapturedImage(string tempFilePath)
         {
-            try
-            {
-                // Ensure the directory exists
-                string directoryPath = System.IO.Path.GetDirectoryName(localPath);
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
+            //BitmapEncoder encoder = new PngBitmapEncoder();
+            //encoder.Frames.Add(BitmapFrame.Create((BitmapSource)imgPicture.Source));
 
-                // Save the image to the specified path
-                using (var fileStream = new FileStream(localPath, FileMode.Create))
+            //using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    encoder.Save(fileStream);
+            //}
+
+            if (imgPicture.Source is BitmapSource bitmapSource)
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                using (var fileStream = new FileStream(tempFilePath, FileMode.Create))
                 {
-                    BitmapEncoder encoder = new PngBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create((BitmapSource)imgPicture.Source));
                     encoder.Save(fileStream);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error saving image: {ex.Message}");
-            }
-        }
-
-        private void UpdateMenuItemImageInDatabase(string fileName)
-        {
-            var item = _dbConn.Menu_Items.FirstOrDefault(i => i.Item_ID == _menuItem.Item_ID);
-            if (item != null)
-            {
-                item.Item_Image = fileName;
-                _dbConn.SubmitChanges();
+                MessageBox.Show("Image source is not a valid BitmapSource.");
             }
         }
 

@@ -105,6 +105,27 @@ namespace TENDER_POS_System
 				return this.GetTable<Order_Item>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdatePicturePath")]
+		public int uspUpdatePicturePath([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string userPicturePath)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, userPicturePath);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AddMenuItem")]
+		public int AddMenuItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Name", DbType="VarChar(100)")] string item_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category_ID", DbType="VarChar(100)")] string category_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Description", DbType="VarChar(100)")] string item_Description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Price", DbType="Int")] System.Nullable<int> item_Price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Image", DbType="VarChar(100)")] string item_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), item_Name, category_ID, item_Description, item_Price, item_Image);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateMenuItem")]
+		public int UpdateMenuItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_ID", DbType="Int")] System.Nullable<int> item_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Name", DbType="VarChar(100)")] string item_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category_ID", DbType="VarChar(100)")] string category_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Description", DbType="VarChar(100)")] string item_Description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Price", DbType="Int")] System.Nullable<int> item_Price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Image", DbType="VarChar(100)")] string item_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), item_ID, item_Name, category_ID, item_Description, item_Price, item_Image);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Item_Category")]

@@ -26,7 +26,7 @@
         <elementListCompartment Id="78caebb2-50d9-416e-ae01-93e326d8ca39" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.81814697265625); (3.5 : 1.81814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.81814697265625); (3.5 : 1.81814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TenderConnDataContext/Order/Order_Order_Item" />
       <nodes>
         <classShapeMoniker Id="7974eee2-c16d-4d7c-9568-7869decbea53" />
