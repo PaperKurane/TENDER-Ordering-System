@@ -89,6 +89,8 @@ namespace TENDER_POS_System
             //this.Show();
             cw.Owner = this;
             cw.ShowDialog();
+
+            DisplayItemDetails();
         }
     }
 }

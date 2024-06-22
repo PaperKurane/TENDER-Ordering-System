@@ -21,6 +21,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using Microsoft.Win32;
 using System.Net.NetworkInformation;
+using Path = System.IO.Path;
 
 namespace TENDER_POS_System
 {
@@ -133,26 +134,6 @@ namespace TENDER_POS_System
                         System.Windows.Int32Rect.Empty,
                         BitmapSizeOptions.FromWidthAndHeight((int)imgPicture.Width, (int)imgPicture.Height));
             });
-
-            //MessageBox.Show(eventArgs.Frame.Clone().ToString());
-        }
-
-        private void btnCaptureImage_Click(object sender, RoutedEventArgs e)
-        {
-            //if (vcd.IsRunning)
-            //{
-            //    ImageToFile("Test.png");
-            //    vcd.WaitForStop();
-            //    vcd = null;
-            //    //vcd.Stop();
-            //}
-            ImageToFile("Test.png");
-
-            // Place path to file here for sql submitting
-
-            CloseCamera();
-
-            this.Close();
         }
 
         public void ImageToFile(string filePath)
@@ -171,7 +152,7 @@ namespace TENDER_POS_System
             if (_cameraMode == true)
             {
                 vcd.SignalToStop();
-                vcd.WaitForStop();
+                //vcd.WaitForStop();
                 vcd = null;
 
                 GC.Collect();
@@ -218,7 +199,7 @@ namespace TENDER_POS_System
             {
                 try
                 {
-                    string ext = "png";
+                    string ext = "jpg";
                     string tempFilePath = $"E:/ProgrammingShit/TENDER Ordering System/Temp/" + _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
 
                     SaveCapturedImage(tempFilePath);
@@ -255,7 +236,42 @@ namespace TENDER_POS_System
 
         private void btnConfirmU_Click(object sender, RoutedEventArgs e)
         {
+            if (_cameraMode == false)
+            {
+                try
+                {
+                    // Get the file path from lbFileName.Content
+                    string sourceFilePath = lbFileName.Content.ToString();
 
+                    // Ensure the source file path is valid
+                    if (!File.Exists(sourceFilePath))
+                    {
+                        MessageBox.Show("The selected file does not exist.");
+                        return;
+                    }
+
+                    string ext = "jpg";
+
+                    // Define the target file path
+                    string targetFileName = _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
+                    string targetFilePath = Path.Combine("E:/ProgrammingShit/TENDER Ordering System/Menu Items/", targetFileName);
+
+                    // Copy the file to the target location
+                    File.Copy(sourceFilePath, targetFilePath, true);
+
+                    // Update the database with the new file path
+                    _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, targetFileName);
+
+                    imgPicture.Source = LoadImage(targetFilePath);
+
+                    // Close the window
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving image: {ex.Message}");
+                }
+            }
         }
     }
 }

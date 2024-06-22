@@ -23,13 +23,14 @@ namespace TENDER_POS_System
     {
         TenderConnDataContext _dbConn = null;
         bool EmployeeMode = false;
+        private string _currentCategoryID = "1"; // 1 is defaulted to ricemeals
 
         public MainWindow()
         {
             InitializeComponent();
 
             _dbConn = new TenderConnDataContext(Properties.Settings.Default.TenderConnectionString);
-            LoadMenuItems("1"); // 1 is defaulted to ricemeals
+            LoadMenuItems(_currentCategoryID);
         }
 
         private void LoadMenuItems(string categoryID)
@@ -118,11 +119,11 @@ namespace TENDER_POS_System
         private void CategoryChanger(object sender, MouseButtonEventArgs e)
         {
             Image category = sender as Image;
-            string clickedCategory = category.Tag.ToString();
+            _currentCategoryID = category.Tag.ToString();
 
-            LoadMenuItems(clickedCategory);
+            LoadMenuItems(_currentCategoryID);
 
-            switch (clickedCategory)
+            switch (_currentCategoryID)
             {
                 case "1":
                     lbStatusbar.Content = "Now viewing rice meals...";
@@ -149,6 +150,8 @@ namespace TENDER_POS_System
                 OrderWindow ow = new OrderWindow(item, _dbConn);
                 ow.Owner = this;
                 ow.ShowDialog();
+
+                LoadMenuItems(_currentCategoryID);
             }
         }
     }
