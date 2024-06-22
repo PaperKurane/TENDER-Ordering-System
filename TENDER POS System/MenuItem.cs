@@ -12,7 +12,7 @@ namespace TENDER_POS_System
         public string Item_Name { get; set; }
         public string Category_ID { get; set; }
         public string Item_Description { get; set; }
-        public decimal Item_Price { get; set; }
+        public int Item_Price { get; set; }
         public string Item_Image { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace TENDER_POS_System
     public partial class MainWindow : Window
     {
         TenderConnDataContext _dbConn = null;
-        bool EmployeeMode = false;
+        bool EmployeeMode = true;
         private string _currentCategoryID = "1"; // 1 is defaulted to ricemeals
 
         public MainWindow()
@@ -30,19 +30,19 @@ namespace TENDER_POS_System
             InitializeComponent();
 
             _dbConn = new TenderConnDataContext(Properties.Settings.Default.TenderConnectionString);
-            LoadMenuItems(_currentCategoryID);
+            LoadMenuItems();
         }
 
-        private void LoadMenuItems(string categoryID)
+        private void LoadMenuItems()
         {
-            List<MenuItem> menuItems = GetMenuItems(categoryID);
+            List<MenuItem> menuItems = GetMenuItems();
             BindMenuItems(menuItems);
         }
 
-        private List<MenuItem> GetMenuItems(string categoryID)
+        private List<MenuItem> GetMenuItems()
         {
             var items = from item in _dbConn.Menu_Items
-                        where item.Category_ID == categoryID
+                        where item.Category_ID == _currentCategoryID
                         select new MenuItem
                         {
                             Item_ID = item.Item_ID,
@@ -77,10 +77,8 @@ namespace TENDER_POS_System
                 {
                     try
                     {
-                        //string imagePath = $"pack://application:,,,/Resources/Menu Items/{item.Item_Image}";
                         string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{item.Item_Image}";
                         BitmapImage bmi = LoadImage(imagePath);
-                        //img.Source = new BitmapImage(new Uri(imagePath));
                         img.Source = bmi;
                     }
                     catch
@@ -121,7 +119,7 @@ namespace TENDER_POS_System
             Image category = sender as Image;
             _currentCategoryID = category.Tag.ToString();
 
-            LoadMenuItems(_currentCategoryID);
+            LoadMenuItems();
 
             switch (_currentCategoryID)
             {
@@ -140,6 +138,14 @@ namespace TENDER_POS_System
             }
         }
 
+        private void StatusBarHandler(bool UpdateSuccess, MenuItem item)
+        {
+            if (UpdateSuccess == true)
+            {
+                lbStatusbar.Content = "Successfully Updated " + item.Item_Name + "!";
+            }
+        }
+
         private void imgItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image img = (Image)sender;
@@ -147,11 +153,13 @@ namespace TENDER_POS_System
 
             if (item != null)
             {
-                OrderWindow ow = new OrderWindow(item, _dbConn);
+                OrderWindow ow = new OrderWindow(item, _dbConn, EmployeeMode);
                 ow.Owner = this;
                 ow.ShowDialog();
 
-                LoadMenuItems(_currentCategoryID);
+                StatusBarHandler(ow.UpdateSuccess, item);
+
+                LoadMenuItems();
             }
         }
     }

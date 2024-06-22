@@ -89,11 +89,6 @@ namespace TENDER_POS_System
             return bitmap;
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         #region Camera
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
@@ -161,37 +156,6 @@ namespace TENDER_POS_System
                 _cameraMode = false;
             }
         }
-        #endregion 
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            CloseCamera();
-        }
-
-        private void btnUpload_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            CloseCamera();
-            grdUploadMode.Visibility = Visibility.Visible;
-            grdCameraMode.Visibility = Visibility.Collapsed;
-
-            DisplayItemDetails();
-
-            if (_cameraMode == false)
-            {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Title = "Browse Photos...";
-                ofd.DefaultExt = "png";
-                ofd.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
-                    "All files (*.*)|*.*";
-
-                ofd.ShowDialog();
-
-                if (ofd.FileName.Length > 0)
-                {
-                    lbFileName.Content = ofd.FileName;
-                }
-            }
-        }
 
         private void btnConfirmC_Click(object sender, RoutedEventArgs e)
         {
@@ -233,6 +197,33 @@ namespace TENDER_POS_System
                 MessageBox.Show("Image source is not a valid BitmapSource.");
             }
         }
+        #endregion 
+
+        #region Upload
+        private void btnUpload_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CloseCamera();
+            grdUploadMode.Visibility = Visibility.Visible;
+            grdCameraMode.Visibility = Visibility.Collapsed;
+
+            DisplayItemDetails();
+
+            if (_cameraMode == false)
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Title = "Browse Photos...";
+                ofd.DefaultExt = "png";
+                ofd.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" +
+                    "All files (*.*)|*.*";
+
+                ofd.ShowDialog();
+
+                if (ofd.FileName.Length > 0)
+                {
+                    lbFileName.Content = ofd.FileName;
+                }
+            }
+        }
 
         private void btnConfirmU_Click(object sender, RoutedEventArgs e)
         {
@@ -256,15 +247,12 @@ namespace TENDER_POS_System
                     string targetFileName = _menuItem.Item_Name.Replace(" ", "").ToLower() + "." + ext;
                     string targetFilePath = Path.Combine("E:/ProgrammingShit/TENDER Ordering System/Menu Items/", targetFileName);
 
-                    // Copy the file to the target location
                     File.Copy(sourceFilePath, targetFilePath, true);
 
-                    // Update the database with the new file path
                     _dbConn.uspUpdatePicturePath(_menuItem.Item_Name, targetFileName);
 
                     imgPicture.Source = LoadImage(targetFilePath);
 
-                    // Close the window
                     this.Close();
                 }
                 catch (Exception ex)
@@ -272,6 +260,17 @@ namespace TENDER_POS_System
                     MessageBox.Show($"Error saving image: {ex.Message}");
                 }
             }
+        }
+        #endregion
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CloseCamera();
         }
     }
 }

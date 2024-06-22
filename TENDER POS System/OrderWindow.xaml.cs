@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -24,36 +25,39 @@ namespace TENDER_POS_System
     public partial class OrderWindow : Window
     {
         private MenuItem _menuItem;
-
         TenderConnDataContext _dbConn = null;
+        bool _EmployeeMode = false;
+
+        public bool UpdateSuccess = false;
 
         public OrderWindow()
         {
             InitializeComponent();
         }
 
-        public OrderWindow(MenuItem menuItem, TenderConnDataContext connection)
+        public OrderWindow(MenuItem menuItem, TenderConnDataContext connection, bool EmployeeMode)
         {
             InitializeComponent();
 
             _menuItem = menuItem;
-
             _dbConn = connection;
+            _EmployeeMode = EmployeeMode;
 
             DisplayItemDetails();
+
+            AccessController();
         }
 
         private void DisplayItemDetails()
         {
             tbMealName.Text = _menuItem.Item_Name;
-            tbMealPrice.Text = $"Price: {_menuItem.Item_Price.ToString("C", new CultureInfo("fil-PH"))}";
+            tbMealPrice.Text = $"{_menuItem.Item_Price.ToString()}";
+            tbMealDesc.Text = _menuItem.Item_Description;
 
             try
             {
-                //string imagePath = $"pack://application:,,,/Resources/Menu Items/{_menuItem.Item_Image}";
                 string imagePath = $"E:/ProgrammingShit/TENDER Ordering System/Menu Items/{_menuItem.Item_Image}";
                 BitmapImage bmi = LoadImage(imagePath);
-                //imgPicture.Source = new BitmapImage(new Uri(imagePath));
                 imgPicture.Source = bmi;
             }
             catch
@@ -76,21 +80,87 @@ namespace TENDER_POS_System
             return bitmap;
         }
 
+        private void AccessController()
+        {
+            if (_EmployeeMode == true)
+            {
+                tbMealName.IsReadOnly = false;
+                tbMealPrice.IsReadOnly = false;
+                tbMealDesc.IsReadOnly = false;
+            }
+            else
+            {
+                tbMealName.IsReadOnly = true;
+                tbMealPrice.IsReadOnly = true;
+                tbMealDesc.IsReadOnly = true;
+            }
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        private void btnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            if (_EmployeeMode == true)
+            {
+                string itemName = tbMealName.Text;
+                int itemPrice = int.Parse(tbMealPrice.Text);
+                string itemDescription = tbMealDesc.Text;
+
+                if (itemName.Length > "Tonkotsu Miso Overload".Length)
+                {
+                    MessageBox.Show("Item Name cannot be longer than 'Tonkotsu Miso Overload'.");
+                    return;
+                }
+
+                // Validate Item_Price
+                if (!int.TryParse(tbMealPrice.Text, out itemPrice) || tbMealPrice.Text.Length > 5)
+                {
+                    MessageBox.Show("Item Price must be a number and cannot be longer than 5 digits.");
+                    return;
+                }
+
+                // Validate Item_Description
+                if (itemDescription.Length > 100)
+                {
+                    MessageBox.Show("Item Description cannot be longer than this!.");
+                    return;
+                }
+
+                _menuItem.Item_Name = itemName;
+                _menuItem.Item_Price = itemPrice;
+                _menuItem.Item_Description = itemDescription;
+
+                try
+                {
+                    _dbConn.UpdateMenuItem(_menuItem.Item_ID, _menuItem.Item_Name, _menuItem.Category_ID, _menuItem.Item_Description, _menuItem.Item_Price, _menuItem.Item_Image);
+                    //MessageBox.Show("Menu item updated successfully.");
+
+                    UpdateSuccess = true;
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error updating menu item: {ex.Message}");
+                }
+            }
+        }
+
         private void imgPicture_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CameraWindow cw = new CameraWindow(_menuItem, _dbConn);
-            //this.Hide();
-            //cw.ShowDialog();
-            //this.Show();
-            cw.Owner = this;
-            cw.ShowDialog();
+            if (_EmployeeMode == true)
+            {
+                CameraWindow cw = new CameraWindow(_menuItem, _dbConn);
+                //this.Hide();
+                //cw.ShowDialog();
+                //this.Show();
+                cw.Owner = this;
+                cw.ShowDialog();
 
-            DisplayItemDetails();
+                DisplayItemDetails();
+            }
         }
     }
 }
