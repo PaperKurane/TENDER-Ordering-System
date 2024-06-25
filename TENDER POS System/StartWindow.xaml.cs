@@ -129,5 +129,10 @@ namespace TENDER_POS_System
                 UpdateEllipses();
             }
         }
+
+        private void btnExit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

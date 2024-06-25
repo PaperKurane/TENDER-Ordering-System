@@ -42,5 +42,8 @@
             <Rectangle Height="82" Stroke="#FFCF7255" Width="446" Margin="305,181,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFCF7255"/>
             <Label x:Name="lbPINStatus" Content="Enter Correct MPIN" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="58" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="263,173,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="102" Width="524"/>
         </Grid>
+        
+        <Image x:Name="btnExit" Source="/Exit.png" Margin="36,960,0,0" HorizontalAlignment="Left" Width="60" Height="60" VerticalAlignment="Top" MouseDown="btnExit_MouseDown"/>
+        <Label x:Name="lbExit" Content="Exit" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="17,1014,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
     </Grid>
 </Window>
