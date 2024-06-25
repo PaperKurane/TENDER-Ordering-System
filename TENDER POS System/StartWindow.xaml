@@ -1,0 +1,30 @@
+﻿<Window x:Class="TENDER_POS_System.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TENDER_POS_System"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Title="StartWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Main background.png"/>
+        </Grid.Background>
+
+        <Label x:Name="lbCopyright" Content="@ 2024 TENDER ORDERING SYSTEM" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="28" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="1374,999,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="49" Width="524"/>
+
+
+
+        <Button Content="1" Margin="220,18,1486,927" BorderBrush="White" Background="White" FontSize="40"/>
+
+        <Image x:Name="btnCustomerButton" Source="/Customer Button.png" Margin="911,142,0,0" HorizontalAlignment="Left" Width="826" Height="373" VerticalAlignment="Top"/>
+        <Image x:Name="btnEmployeeButton" Source="/Employee Button.png" Margin="911,559,0,0" HorizontalAlignment="Left" Width="826" Height="373" VerticalAlignment="Top"/>
+        <Image x:Name="imgLogoScreen" Visibility="Visible" Source="/LogoScreen.png" Margin="196,0,0,0" HorizontalAlignment="Left" Width="658" Height="780" VerticalAlignment="Center"/>
+
+        <Image x:Name="imgPINScreen" Visibility="Visible" Source="/Pin Screen.png" Margin="196,0,0,0" HorizontalAlignment="Left" Width="658" Height="780" VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>

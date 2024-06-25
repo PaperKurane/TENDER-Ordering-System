@@ -71,6 +71,9 @@
       <DependentUpon>CameraWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuItem.cs" />
+    <Compile Include="StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TenderConn.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +96,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,6 +247,32 @@
     <Resource Include="Resources\Menu Items\karaagebowl.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Customer Button.png" />
+    <Resource Include="Resources\Icons\Employee Button.png" />
+    <Resource Include="Resources\Icons\LogoScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Customer Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\StartMenu Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="StartMenu Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Employee Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LogoScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Pin Screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pin Screen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
