@@ -37,8 +37,6 @@ namespace TENDER_POS_System
         FilterInfoCollection fic = null;
         VideoCaptureDevice vcd = null;
 
-        BitmapImage _default = new BitmapImage();
-
         bool _cameraMode = false;
 
         string imagePath = null;
@@ -71,7 +69,7 @@ namespace TENDER_POS_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading image: {ex.Message}");
+                //MessageBox.Show($"Error loading image: {ex.Message}");
             }
         }
         
@@ -131,17 +129,6 @@ namespace TENDER_POS_System
             });
         }
 
-        public void ImageToFile(string filePath)
-        {
-            var image = imgPicture.Source;
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)image));
-                encoder.Save(fileStream);
-            }
-        }
-
         private void CloseCamera()
         {
             if (_cameraMode == true)
@@ -175,7 +162,7 @@ namespace TENDER_POS_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error saving image: {ex.Message}");
+                    //MessageBox.Show($"Error saving image: {ex.Message}");
                 }
             }
         }
@@ -194,7 +181,7 @@ namespace TENDER_POS_System
             }
             else
             {
-                MessageBox.Show("Image source is not a valid BitmapSource.");
+                //MessageBox.Show("Image source is not a valid BitmapSource.");
             }
         }
         #endregion 
@@ -257,7 +244,7 @@ namespace TENDER_POS_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error saving image: {ex.Message}");
+                    //MessageBox.Show($"Error saving image: {ex.Message}");
                 }
             }
         }

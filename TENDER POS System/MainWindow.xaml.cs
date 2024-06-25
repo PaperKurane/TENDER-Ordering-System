@@ -22,8 +22,10 @@ namespace TENDER_POS_System
     public partial class MainWindow : Window
     {
         TenderConnDataContext _dbConn = null;
-        bool EmployeeMode = true;
+        bool _EmployeeMode;
         private string _currentCategoryID = "1"; // 1 is defaulted to ricemeals
+
+        private Dictionary<string, (string itemName, int itemPrice, int quantity)> itemsDictionary = new Dictionary<string, (string itemName, int itemPrice, int quantity)>();
 
         public MainWindow()
         {
@@ -33,6 +35,8 @@ namespace TENDER_POS_System
         public MainWindow(bool EmployeeMode)
         {
             InitializeComponent();
+
+            _EmployeeMode = EmployeeMode;
 
             _dbConn = new TenderConnDataContext(Properties.Settings.Default.TenderConnectionString);
             LoadMenuItems();
@@ -158,7 +162,7 @@ namespace TENDER_POS_System
 
             if (item != null)
             {
-                OrderWindow ow = new OrderWindow(item, _dbConn, EmployeeMode);
+                OrderWindow ow = new OrderWindow(item, _dbConn, _EmployeeMode);
                 ow.Owner = this;
                 ow.ShowDialog();
 
@@ -172,5 +176,93 @@ namespace TENDER_POS_System
         {
             this.Close();
         }
+
+        #region Receipt System
+        public void AddItemToListBox(string itemName, int itemPrice)
+        {
+            if (itemsDictionary.ContainsKey(itemName))
+            {
+                itemsDictionary[itemName] = (itemName, itemPrice, itemsDictionary[itemName].quantity + 1);
+            }
+            else
+            {
+                itemsDictionary[itemName] = (itemName, itemPrice, 1);
+            }
+
+            UpdateListBox();
+            UpdateTotalPrice();
+        }
+
+        private void UpdateListBox()
+        {
+            lbxOrderList.Items.Clear();
+            foreach (var item in itemsDictionary)
+            {
+                lbxOrderList.Items.Add($"{item.Value.itemName} x {item.Value.quantity} = ₱{item.Value.itemPrice * item.Value.quantity}");
+                //lbxOrderList.Items.Add($"{item.Value.itemName} - ${item.Value.itemPrice} x {item.Value.quantity} = ${item.Value.itemPrice * item.Value.quantity}");
+            }
+        }
+
+        private void UpdateTotalPrice()
+        {
+            int totalPrice = itemsDictionary.Sum(item => item.Value.itemPrice * item.Value.quantity);
+            lblTotalPrice.Content = $"Total Price: ₱{totalPrice:F2}";
+        }
+
+        private void btnIncrementQuantity_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbxOrderList.SelectedItem != null)
+            {
+                string selectedItem = lbxOrderList.SelectedItem.ToString();
+                string itemName = selectedItem.Split('x')[0].Trim();
+
+                if (itemsDictionary.ContainsKey(itemName))
+                {
+                    itemsDictionary[itemName] = (itemsDictionary[itemName].itemName, itemsDictionary[itemName].itemPrice, itemsDictionary[itemName].quantity + 1);
+                    UpdateListBox();
+                    UpdateTotalPrice();
+                }
+            }
+        }
+
+        private void btnDecrementQuantity_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbxOrderList.SelectedItem != null)
+            {
+                string selectedItem = lbxOrderList.SelectedItem.ToString();
+                string itemName = selectedItem.Split('x')[0].Trim();
+
+                if (itemsDictionary.ContainsKey(itemName))
+                {
+                    var currentItem = itemsDictionary[itemName];
+                    if (currentItem.quantity > 1)
+                    {
+                        itemsDictionary[itemName] = (currentItem.itemName, currentItem.itemPrice, currentItem.quantity - 1);
+                    }
+                    else
+                    {
+                        itemsDictionary.Remove(itemName);
+                    }
+
+                    UpdateListBox();
+                    UpdateTotalPrice();
+                }
+            }
+        }
+
+        private void btnPlaceOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (itemsDictionary.Count > 0)
+            {
+                EndWindow ew = new EndWindow(itemsDictionary);
+                ew.ShowDialog();
+            }
+            else
+            {
+                //Make it so that the place order button cannot be clicked until itemsDictionary contains atleast 1 item.
+                MessageBox.Show("No items in the order to submit.");
+            }
+        }
+        #endregion
     }
 }

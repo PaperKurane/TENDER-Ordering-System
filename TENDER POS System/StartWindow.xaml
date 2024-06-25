@@ -18,10 +18,10 @@
 
         <Image x:Name="btnCustomerButton" Source="/Customer Button.png" Margin="911,142,0,0" HorizontalAlignment="Left" Width="826" Height="373" VerticalAlignment="Top" MouseDown="btnCustomerButton_MouseDown"/>
         <Image x:Name="btnEmployeeButton" Source="/Employee Button.png" Margin="911,559,0,0" HorizontalAlignment="Left" Width="826" Height="373" VerticalAlignment="Top" MouseDown="btnEmployeeButton_MouseDown"/>
-        <Image x:Name="imgLogoScreen" Source="/LogoScreen.png" Margin="196,0,0,0" HorizontalAlignment="Left" Width="658" Height="780" VerticalAlignment="Center"/>
+        <Image x:Name="imgLogoScreen" Source="/LogoScreen.png" Margin="196,142,0,0" HorizontalAlignment="Left" Width="659" Height="783" VerticalAlignment="Top"/>
 
         <Grid x:Name="grdPIN" Visibility="Collapsed">
-            <Image x:Name="imgPINScreen" Visibility="Visible" Source="/Pin Screen.png" Margin="196,0,0,0" HorizontalAlignment="Left" Width="658" Height="780" VerticalAlignment="Center"/>
+            <Image x:Name="imgPINScreen" Visibility="Visible" Source="/Pin Screen.png" Margin="196,0,0,0" HorizontalAlignment="Left" Width="660" Height="787" VerticalAlignment="Center"/>
             <Button x:Name="btn1" Content="1" Margin="205,410,0,0" BorderBrush="White" Background="White" FontSize="46" FontFamily="Segoe UI SemiBold" FontWeight="Bold" HorizontalAlignment="Left" Width="213" Height="124" VerticalAlignment="Top" Click="NumberButton_Click"/>
             <Button x:Name="btn2" Content="2" Margin="418,410,0,0" BorderBrush="White" Background="White" FontSize="46" FontFamily="Segoe UI SemiBold" FontWeight="Bold" HorizontalAlignment="Left" Width="214" Height="124" VerticalAlignment="Top" Click="NumberButton_Click"/>
             <Button x:Name="btn3" Content="3" Margin="632,410,0,0" BorderBrush="White" Background="White" FontSize="46" FontFamily="Segoe UI SemiBold" FontWeight="Bold" HorizontalAlignment="Left" Width="212" Height="124" VerticalAlignment="Top" Click="NumberButton_Click"/>
@@ -38,9 +38,9 @@
             <Ellipse x:Name="ePos2" Margin="431,300,0,0" Stroke="White" StrokeThickness="5" Fill="#FFCF7255" HorizontalAlignment="Left" Width="62" Height="62" VerticalAlignment="Top"/>
             <Ellipse x:Name="ePos3" Margin="557,300,0,0" Stroke="White" StrokeThickness="5" Fill="#FFCF7255" HorizontalAlignment="Left" Width="62" Height="62" VerticalAlignment="Top"/>
             <Ellipse x:Name="ePos4" Margin="683,300,0,0" Stroke="White" StrokeThickness="5" Fill="#FFCF7255" HorizontalAlignment="Left" Width="62" Height="62" VerticalAlignment="Top"/>
-       
+
             <Rectangle Height="82" Stroke="#FFCF7255" Width="446" Margin="305,181,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFCF7255"/>
-            <Label x:Name="lbPINStatus" Content="Enter the PIN" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="70" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="263,173,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="102" Width="524"/>
+            <Label x:Name="lbPINStatus" Content="Enter Correct MPIN" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="58" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="263,173,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="102" Width="524"/>
         </Grid>
     </Grid>
 </Window>

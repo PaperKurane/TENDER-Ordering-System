@@ -69,13 +69,18 @@
             <TextBox x:Name="lbItem12" TextWrapping="Wrap" Text="Tonkotsu Miso Overload" FontFamily="Segoe UI SemiBold" FontSize="23" HorizontalAlignment="Left" Margin="873,859,0,0" VerticalAlignment="Top" Height="64" Width="235" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
         </Grid>
 
-
         <Label x:Name="lbOrder" Content="Order List" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="1314,18,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="88" Width="579"/>
-        <Button x:Name="btnPlaceOrder" Content="Place Order" FontFamily="Segoe UI SemiBold" FontSize="42" Margin="1400,941,0,0" Background="#FFED4439" Foreground="White" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Width="408" Height="94" VerticalAlignment="Top"/>
+        <Button x:Name="btnPlaceOrder" Content="Place Order" FontFamily="Segoe UI SemiBold" FontSize="55" Margin="1314,941,0,0" Background="#FFED4439" Foreground="White" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Width="579" Height="94" VerticalAlignment="Top"/>
 
-        <Grid x:Name="grdOrderList" Margin="1340,129,52,270" Visibility="Visible">
-            
+
+        <Grid x:Name="grdOrderList" Margin="1319,141,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="568" Height="641" VerticalAlignment="Top">
+            <ListBox x:Name="lbxOrderList" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Width="568" Height="611" VerticalAlignment="Top" FontSize="30"/>
         </Grid>
 
+        <Label x:Name="lblTotalPrice" Content="Total Price: 0" HorizontalAlignment="Left" Margin="1331,744,0,0" VerticalAlignment="Top" Height="61" Width="546" FontSize="40" FontFamily="Segoe UI SemiBold" VerticalContentAlignment="Bottom"/>
+
+
+        <Image x:Name="btnDecrementQuantity" Height="86" Width="160" HorizontalAlignment="Left" Margin="1550,836,0,0" VerticalAlignment="Top" Source="/DecrementMinus.png" MouseDown="btnDecrementQuantity_Click"/>
+        <Image x:Name="btnIncrementQuantity" Height="86" Width="160" HorizontalAlignment="Left" Margin="1733,836,0,0" VerticalAlignment="Top" Source="/IncrementPlus Button.png" MouseDown="btnDecrementQuantity_Click"/>
     </Grid>
 </Window>

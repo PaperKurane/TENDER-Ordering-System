@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Drawing;
 
 namespace TENDER_POS_System
 {
@@ -38,14 +39,24 @@ namespace TENDER_POS_System
             mw.ShowDialog();
 
             pin.Clear();
-            lbPINStatus.Content = "Enter the PIN";
+            lbPINStatus.Content = "Enter Correct MPIN";
+            lbPINStatus.Foreground = System.Windows.Media.Brushes.White;
             UpdateEllipses();
+
+            grdPIN.Visibility = Visibility.Collapsed;
         }
 
         private void btnEmployeeButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (grdPIN.Visibility == Visibility.Visible)
+            {
                 grdPIN.Visibility = Visibility.Collapsed;
+
+                pin.Clear();
+                lbPINStatus.Content = "Enter Correct MPIN";
+                lbPINStatus.Foreground = System.Windows.Media.Brushes.White;
+                UpdateEllipses();
+            }
             else
                 grdPIN.Visibility = Visibility.Visible;
         }
@@ -78,9 +89,9 @@ namespace TENDER_POS_System
             for (int i = 0; i < ellipses.Count; i++)
             {
                 if (i < pin.Count)
-                    ellipses[i].Fill = Brushes.White;
+                    ellipses[i].Fill = System.Windows.Media.Brushes.White;
                 else
-                    ellipses[i].Fill = (Brush)new BrushConverter().ConvertFromString("#FFCF7255");
+                    ellipses[i].Fill = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#FFCF7255");
             }
         }
 
@@ -103,13 +114,16 @@ namespace TENDER_POS_System
                 mw.ShowDialog();
 
                 pin.Clear();
-                lbPINStatus.Content = "Enter the PIN";
+                lbPINStatus.Content = "Enter Correct MPIN";
+                lbPINStatus.Foreground = System.Windows.Media.Brushes.White;
                 UpdateEllipses();
+
+                grdPIN.Visibility = Visibility.Collapsed;
             }
             else
             {
-                lbPINStatus.Content = "Incorrect PIN!";
-                lbPINStatus.Foreground = Brushes.Red;
+                lbPINStatus.Content = "Incorrect MPIN!";
+                lbPINStatus.Foreground = System.Windows.Media.Brushes.Red;
 
                 pin.Clear();
                 UpdateEllipses();

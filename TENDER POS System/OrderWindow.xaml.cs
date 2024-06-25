@@ -146,6 +146,20 @@ namespace TENDER_POS_System
                     MessageBox.Show($"Error updating menu item: {ex.Message}");
                 }
             }
+            else // NEW SHIT
+            {
+                string itemName = tbMealName.Text;
+                int itemPrice = int.Parse(tbMealPrice.Text);
+
+                MainWindow mainWindow = this.Owner as MainWindow;
+
+                if (mainWindow != null)
+                {
+                    mainWindow.AddItemToListBox(itemName, itemPrice);
+                }
+
+                this.Close();
+            }
         }
 
         private void imgPicture_MouseDown(object sender, MouseButtonEventArgs e)
@@ -153,9 +167,6 @@ namespace TENDER_POS_System
             if (_EmployeeMode == true)
             {
                 CameraWindow cw = new CameraWindow(_menuItem, _dbConn);
-                //this.Hide();
-                //cw.ShowDialog();
-                //this.Show();
                 cw.Owner = this;
                 cw.ShowDialog();
 

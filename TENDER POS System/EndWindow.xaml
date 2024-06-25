@@ -1,0 +1,46 @@
+﻿<Window x:Class="TENDER_POS_System.EndWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TENDER_POS_System"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Title="EndWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Main Background (Straight Wave).png"/>
+        </Grid.Background>
+
+        <Label x:Name="lbEndMsg" Content="Please double check your order..." Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="55" Margin="74,50,714,0" VerticalAlignment="Top" Width="1132" Height="82"/>
+        <ListBox x:Name="lbxOrderSummary" HorizontalAlignment="Left" Height="812" VerticalAlignment="Top" Width="739" Margin="35,217,0,0" FontSize="36" Visibility="Visible"/>
+        <Label x:Name="lbTotalPrice" Content="Total: 0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="658" Height="140" Margin="807,799,0,0" FontSize="85" FontFamily="Segoe UI SemiBold" Visibility="Visible"/>
+
+        <Button x:Name="btnDine" HorizontalAlignment="Left" VerticalAlignment="Top" Width="460" Height="555" Margin="854,219,0,0" FontSize="40" Click="btnDine_Click" Visibility="Visible">
+            <Button.Background>
+                <ImageBrush ImageSource="/Dine In Button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="btnTake" HorizontalAlignment="Left" VerticalAlignment="Top" Width="457" Height="555" Margin="1390,219,0,0" FontSize="40" Click="btnTake_Click" Visibility="Visible">
+            <Button.Background>
+                <ImageBrush ImageSource="/Takeout Button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="btnReturn" HorizontalAlignment="Left" Margin="1579,824,0,0" VerticalAlignment="Top"
+        Height="198" Width="268" FontSize="60" Click="btnReturn_Click" Visibility="Visible"
+        Background="#FFFFBB00" FontFamily="Segoe UI SemiBold" BorderBrush="Black" BorderThickness="6"
+        Foreground="White">
+            <TextBlock TextAlignment="Center" TextWrapping="Wrap">
+        <Run>EDIT</Run>
+        <LineBreak/>
+        <Run>ORDER</Run>
+            </TextBlock>
+        </Button>
+
+        <Image x:Name="imgLogo" Margin="357,143,357,22" Source="/TENDER Logo.png" Visibility="Collapsed"/>
+    </Grid>
+</Window>
