@@ -184,7 +184,10 @@ namespace TENDER_POS_System
         {
             if (itemsDictionary.ContainsKey(itemName))
             {
-                itemsDictionary[itemName] = (itemName, itemPrice, itemsDictionary[itemName].quantity + 1);
+                if (itemsDictionary[_itemName].quantity < 10)
+                {
+                    itemsDictionary[itemName] = (itemName, itemPrice, itemsDictionary[itemName].quantity + 1);
+                }
             }
             else
             {
@@ -223,18 +226,24 @@ namespace TENDER_POS_System
 
                 if (itemsDictionary.ContainsKey(_itemName))
                 {
-                    itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
-                    UpdateListBox();
-                    UpdateTotalPrice();
+                    if (itemsDictionary[_itemName].quantity < 10)
+                    {
+                        itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
+                        UpdateListBox();
+                        UpdateTotalPrice();
+                    }
                 }
             }
             else
             {
                 if (itemsDictionary.ContainsKey(_itemName))
                 {
-                    itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
-                    UpdateListBox();
-                    UpdateTotalPrice();
+                    if (itemsDictionary[_itemName].quantity < 10)
+                    {
+                        itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
+                        UpdateListBox();
+                        UpdateTotalPrice();
+                    }
                 }
             }
         }
@@ -264,9 +273,6 @@ namespace TENDER_POS_System
             }
             else
             {
-                _selectedItem = lbxOrderList.SelectedItem.ToString();
-                _itemName = _selectedItem.Split('x')[0].Trim();
-
                 if (itemsDictionary.ContainsKey(_itemName))
                 {
                     var currentItem = itemsDictionary[_itemName];

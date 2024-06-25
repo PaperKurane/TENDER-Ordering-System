@@ -8,7 +8,8 @@
         WindowState="Maximized"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize"
-        Title="EndWindow" Height="1080" Width="1920">
+        Title="EndWindow" Height="1080" Width="1920" 
+        MouseDown="Window_MouseDown">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Main Background (Straight Wave).png"/>

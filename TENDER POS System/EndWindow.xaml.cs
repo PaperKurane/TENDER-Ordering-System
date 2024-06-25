@@ -127,5 +127,15 @@ namespace TENDER_POS_System
             lbEndMsg.Content = "Arigathanks Gozaimuch!!!";
             imgLogo.Visibility = Visibility.Visible;
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (imgLogo.Visibility == Visibility.Visible)
+            {
+                StartWindow sw = new StartWindow();
+                sw.Show();
+                this.Close();
+            }
+        }
     }
 }
