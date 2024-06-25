@@ -34,6 +34,16 @@
       <Association Name="Order_Order_Item" Member="Order" ThisKey="Order_ID" OtherKey="Order_ID" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.OrderSummary" Member="OrderSummaries">
+    <Type Name="OrderSummary">
+      <Column Name="Order_Item_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Order_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Order_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.uspUpdatePicturePath" Method="uspUpdatePicturePath">
     <Parameter Name="userName" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="userPicturePath" Type="System.String" DbType="NVarChar(100)" />
@@ -54,6 +64,19 @@
     <Parameter Name="Item_Description" Parameter="item_Description" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item_Price" Parameter="item_Price" Type="System.Int32" DbType="Int" />
     <Parameter Name="Item_Image" Parameter="item_Image" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertOrder" Method="InsertOrder">
+    <Parameter Name="Order_Date" Parameter="order_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Total_Amount" Parameter="total_Amount" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Order_ID" Parameter="order_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertOrderItem" Method="InsertOrderItem">
+    <Parameter Name="Order_ID" Parameter="order_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Price" Parameter="price" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

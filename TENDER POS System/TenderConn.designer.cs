@@ -106,6 +106,14 @@ namespace TENDER_POS_System
 			}
 		}
 		
+		public System.Data.Linq.Table<OrderSummary> OrderSummaries
+		{
+			get
+			{
+				return this.GetTable<OrderSummary>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdatePicturePath")]
 		public int uspUpdatePicturePath([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string userPicturePath)
 		{
@@ -124,6 +132,21 @@ namespace TENDER_POS_System
 		public int UpdateMenuItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_ID", DbType="Int")] System.Nullable<int> item_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Name", DbType="VarChar(100)")] string item_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category_ID", DbType="VarChar(100)")] string category_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Description", DbType="VarChar(100)")] string item_Description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Price", DbType="Int")] System.Nullable<int> item_Price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_Image", DbType="VarChar(100)")] string item_Image)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), item_ID, item_Name, category_ID, item_Description, item_Price, item_Image);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertOrder")]
+		public int InsertOrder([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Order_Date", DbType="DateTime")] System.Nullable<System.DateTime> order_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Total_Amount", DbType="Int")] System.Nullable<int> total_Amount, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Order_ID", DbType="Int")] ref System.Nullable<int> order_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), order_Date, total_Amount, order_ID);
+			order_ID = ((System.Nullable<int>)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertOrderItem")]
+		public int InsertOrderItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Order_ID", DbType="Int")] System.Nullable<int> order_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item_ID", DbType="VarChar(100)")] string item_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Quantity", DbType="Int")] System.Nullable<int> quantity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Int")] System.Nullable<int> price)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), order_ID, item_ID, quantity, price);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -729,6 +752,123 @@ namespace TENDER_POS_System
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderSummary")]
+	public partial class OrderSummary
+	{
+		
+		private int _Order_Item_ID;
+		
+		private int _Order_ID;
+		
+		private string _Item_Name;
+		
+		private int _Quantity;
+		
+		private int _Price;
+		
+		private System.DateTime _Order_Date;
+		
+		public OrderSummary()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Order_Item_ID", DbType="Int NOT NULL")]
+		public int Order_Item_ID
+		{
+			get
+			{
+				return this._Order_Item_ID;
+			}
+			set
+			{
+				if ((this._Order_Item_ID != value))
+				{
+					this._Order_Item_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Order_ID", DbType="Int NOT NULL")]
+		public int Order_ID
+		{
+			get
+			{
+				return this._Order_ID;
+			}
+			set
+			{
+				if ((this._Order_ID != value))
+				{
+					this._Order_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Item_Name
+		{
+			get
+			{
+				return this._Item_Name;
+			}
+			set
+			{
+				if ((this._Item_Name != value))
+				{
+					this._Item_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Int NOT NULL")]
+		public int Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Order_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Order_Date
+		{
+			get
+			{
+				return this._Order_Date;
+			}
+			set
+			{
+				if ((this._Order_Date != value))
+				{
+					this._Order_Date = value;
+				}
 			}
 		}
 	}

@@ -26,6 +26,8 @@ namespace TENDER_POS_System
         private string _currentCategoryID = "1"; // 1 is defaulted to ricemeals
 
         private Dictionary<string, (string itemName, int itemPrice, int quantity)> itemsDictionary = new Dictionary<string, (string itemName, int itemPrice, int quantity)>();
+        private string _selectedItem = "";
+        private string _itemName = "";
 
         public MainWindow()
         {
@@ -198,7 +200,10 @@ namespace TENDER_POS_System
             lbxOrderList.Items.Clear();
             foreach (var item in itemsDictionary)
             {
-                lbxOrderList.Items.Add($"{item.Value.itemName} x {item.Value.quantity} = ₱{item.Value.itemPrice * item.Value.quantity}");
+                if (item.Value.quantity > 10)
+                    MessageBox.Show("Cannot order more than 10!");
+                else
+                    lbxOrderList.Items.Add($"{item.Value.itemName} x {item.Value.quantity} = ₱{item.Value.itemPrice * item.Value.quantity}");
                 //lbxOrderList.Items.Add($"{item.Value.itemName} - ${item.Value.itemPrice} x {item.Value.quantity} = ${item.Value.itemPrice * item.Value.quantity}");
             }
         }
@@ -213,12 +218,21 @@ namespace TENDER_POS_System
         {
             if (lbxOrderList.SelectedItem != null)
             {
-                string selectedItem = lbxOrderList.SelectedItem.ToString();
-                string itemName = selectedItem.Split('x')[0].Trim();
+                _selectedItem = lbxOrderList.SelectedItem.ToString();
+                _itemName = _selectedItem.Split('x')[0].Trim();
 
-                if (itemsDictionary.ContainsKey(itemName))
+                if (itemsDictionary.ContainsKey(_itemName))
                 {
-                    itemsDictionary[itemName] = (itemsDictionary[itemName].itemName, itemsDictionary[itemName].itemPrice, itemsDictionary[itemName].quantity + 1);
+                    itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
+                    UpdateListBox();
+                    UpdateTotalPrice();
+                }
+            }
+            else
+            {
+                if (itemsDictionary.ContainsKey(_itemName))
+                {
+                    itemsDictionary[_itemName] = (itemsDictionary[_itemName].itemName, itemsDictionary[_itemName].itemPrice, itemsDictionary[_itemName].quantity + 1);
                     UpdateListBox();
                     UpdateTotalPrice();
                 }
@@ -229,19 +243,40 @@ namespace TENDER_POS_System
         {
             if (lbxOrderList.SelectedItem != null)
             {
-                string selectedItem = lbxOrderList.SelectedItem.ToString();
-                string itemName = selectedItem.Split('x')[0].Trim();
+                _selectedItem = lbxOrderList.SelectedItem.ToString();
+                _itemName = _selectedItem.Split('x')[0].Trim();
 
-                if (itemsDictionary.ContainsKey(itemName))
+                if (itemsDictionary.ContainsKey(_itemName))
                 {
-                    var currentItem = itemsDictionary[itemName];
+                    var currentItem = itemsDictionary[_itemName];
                     if (currentItem.quantity > 1)
                     {
-                        itemsDictionary[itemName] = (currentItem.itemName, currentItem.itemPrice, currentItem.quantity - 1);
+                        itemsDictionary[_itemName] = (currentItem.itemName, currentItem.itemPrice, currentItem.quantity - 1);
                     }
                     else
                     {
-                        itemsDictionary.Remove(itemName);
+                        itemsDictionary.Remove(_itemName);
+                    }
+
+                    UpdateListBox();
+                    UpdateTotalPrice();
+                }
+            }
+            else
+            {
+                _selectedItem = lbxOrderList.SelectedItem.ToString();
+                _itemName = _selectedItem.Split('x')[0].Trim();
+
+                if (itemsDictionary.ContainsKey(_itemName))
+                {
+                    var currentItem = itemsDictionary[_itemName];
+                    if (currentItem.quantity > 1)
+                    {
+                        itemsDictionary[_itemName] = (currentItem.itemName, currentItem.itemPrice, currentItem.quantity - 1);
+                    }
+                    else
+                    {
+                        itemsDictionary.Remove(_itemName);
                     }
 
                     UpdateListBox();

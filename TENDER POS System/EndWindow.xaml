@@ -14,9 +14,9 @@
             <ImageBrush ImageSource="/Main Background (Straight Wave).png"/>
         </Grid.Background>
 
-        <Label x:Name="lbEndMsg" Content="Please double check your order..." Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="55" Margin="74,50,714,0" VerticalAlignment="Top" Width="1132" Height="82"/>
-        <ListBox x:Name="lbxOrderSummary" HorizontalAlignment="Left" Height="812" VerticalAlignment="Top" Width="739" Margin="35,217,0,0" FontSize="36" Visibility="Visible"/>
-        <Label x:Name="lbTotalPrice" Content="Total: 0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="658" Height="140" Margin="807,799,0,0" FontSize="85" FontFamily="Segoe UI SemiBold" Visibility="Visible"/>
+        <Label x:Name="lbEndMsg" Content="Please double check your order..." Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="75" Margin="35,36,753,0" VerticalAlignment="Top" Width="1132" Height="117"/>
+        <ListBox x:Name="lbxOrderSummary" HorizontalAlignment="Left" Height="812" VerticalAlignment="Top" Width="739" Margin="35,217,0,0" FontSize="35" Visibility="Visible"/>
+        <Label x:Name="lbTotalPrice" Content="Total: 0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="697" Height="140" Margin="854,853,0,0" FontSize="85" FontFamily="Segoe UI SemiBold" Visibility="Visible"/>
 
         <Button x:Name="btnDine" HorizontalAlignment="Left" VerticalAlignment="Top" Width="460" Height="555" Margin="854,219,0,0" FontSize="40" Click="btnDine_Click" Visibility="Visible">
             <Button.Background>
