@@ -29,7 +29,7 @@
         <Label x:Name="lbSides" Content="Sides" Foreground="White" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="19,654,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
 
-        <Image x:Name="btnExit" Source="/Exit.png" Margin="36,960,0,0" HorizontalAlignment="Left" Width="60" Height="60" VerticalAlignment="Top"/>
+        <Image x:Name="btnExit" Source="/Exit.png" Margin="36,960,0,0" HorizontalAlignment="Left" Width="60" Height="60" VerticalAlignment="Top" MouseDown="btnExit_MouseDown"/>
         <Label x:Name="lbExit" Content="Exit" Foreground="Black" FontFamily="Segoe UI SemiBold" FontSize="15" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="17,1014,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="32" Width="84"/>
 
         <Image x:Name="imgLogo" Source="/TENDER Logo.png" Height="100" Width="100" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>

@@ -28,6 +28,11 @@ namespace TENDER_POS_System
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(bool EmployeeMode)
+        {
+            InitializeComponent();
 
             _dbConn = new TenderConnDataContext(Properties.Settings.Default.TenderConnectionString);
             LoadMenuItems();
@@ -161,6 +166,11 @@ namespace TENDER_POS_System
 
                 LoadMenuItems();
             }
+        }
+
+        private void btnExit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }
